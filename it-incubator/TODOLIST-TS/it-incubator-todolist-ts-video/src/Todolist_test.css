@@ -1,0 +1,586 @@
+.container {
+    /*background-color: #555555;*/
+    min-width: 50%;
+    margin-top: 1%;
+    margin-left: 1%;
+    padding: 1%;
+    justify-content: center;
+    border: 2px solid slategrey;
+    border-radius: 5px;
+
+}
+
+/* Загальні стилі для кнопок */
+button {
+    padding: 6px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Загальні стилі для кнопок при наведенні */
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Стилі для кнопки додавання завдання */
+.button-add-task {
+    width: 100%;
+    /*height: 80%;*/
+    /*padding: 10px;*/
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+    /*margin-bottom: 10px;*/
+}
+
+.button-add-task:hover {
+    background-color: #218838;
+}
+
+/* Стилі для кнопки "Відобразити" */
+.btn-data-group-view {
+    background-color: #28a745;
+    height: max-content;
+    color: white;
+    margin-left: 15px;
+    justify-content: center;
+}
+
+.btn-data-group-view:hover {
+    background-color: #45a049;
+
+}
+
+/* Стилі для кнопки "Сховати" */
+button.btn-data-group-hidden {
+    background-color: slategrey; /* Червоний фон */
+    color: white;
+    height: max-content;
+    margin-left: 15px;
+}
+
+/* При наведенні на кнопку "Сховати" */
+.btn-data-group-hidden:hover {
+    background-color: slategrey; /* Темніший червоний при наведенні */
+    transform: scale(1.05); /* Злегка збільшується розмір */
+}
+
+.btn-data-group-box {
+    /*background-color: #282c34;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+/* Кнопки видалення та редагування */
+button:nth-of-type(1) {
+    /*background-color: #ffc107;*/
+    /*color: black;*/
+}
+
+/*button:nth-of-type(1):hover {*/
+/*    !*background-color: #e0a800;*!*/
+/*}*/
+
+/*button:nth-of-type(2) {*/
+/*    background-color: #dc3545;*/
+/*    color: white;*/
+/*}*/
+
+/*button:nth-of-type(2):hover {*/
+/*    background-color: #c82333;*/
+/*}*/
+
+/*!* Фільтри *!*/
+/*button:nth-of-type(3),*/
+/*button:nth-of-type(4),*/
+/*button:nth-of-type(5) {*/
+/*    background-color: #007bff;*/
+/*    color: white;*/
+/*    margin-top: 10px;*/
+/*    width: 30%;*/
+/*    padding: 8px;*/
+/*}*/
+
+/*button:nth-of-type(3):hover,*/
+/*button:nth-of-type(4):hover,*/
+/*button:nth-of-type(5):hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+
+. span,
+li span {
+    padding-left: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+
+/* Стиль заголовка */
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+/* Вхідні поля з лейблом */
+
+
+.input-Mit-Label {
+    /*width: 100%;*/
+    /*max-height: 5%;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*font-size: 12px;*/
+    /*!*font-weight: bold;*!*/
+    /*!*margin-bottom: 5px;*!*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*color: #555;*/
+    /*!*background-color: #c79a63;*!*/
+    /*!*border: 1px solid green;*!*/
+    padding-bottom: 5px;
+    border-bottom: 2px solid grey;
+}
+
+.input-Mit-Label-Right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid grey;
+    align-items: center;
+    /*padding-bottom: 5px;*/
+    margin-bottom: 2%;
+}
+
+.input-Mit-Label-Midle {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    padding-right: 0;
+    padding-left: 0.5%;
+    border-bottom: 2px solid grey;
+    /*background-color: #c79a63;*/
+
+}
+
+.input-Mit-Label-Midle-Midle {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    padding-right: 0;
+    padding-left: 0.5%;
+    border-bottom: 2px solid grey;
+    /*background-color: #c79a63;*/
+
+}
+
+.title-group-lable-right {
+    /*background-color: #c79a63;*/
+    color: #282c34;
+    padding: 0;
+    margin: 0;
+    /*min-width: 95%;*/
+    /*max-width: 100%;*/
+    min-height: 20%;
+    align-items: center;
+    /*justify-content: right;*/
+    /*border: 1px solid #282c34;*/
+    /*text-align: right; !* Вирівнювання тексту по правому краю *!*/
+    display: flex; /* Додати flex-контейнер */
+    justify-content: flex-end; /* Вирівнювання тексту по правому краю */
+    padding-right: 10px; /* Додає відступ справа */
+
+}
+
+.title-group-lable-left {
+    /*background-color: #c79a63;*/
+    color: #282c34;
+    padding: 0;
+    margin: 0;
+
+    /*min-width: 95%;*/
+    /*max-width: 100%;*/
+    min-height: 15%;
+    align-items: center;
+    /*justify-content: right;*/
+    /*border: 1px solid #282c34;*/
+
+    /*text-align: right; !* Вирівнювання тексту по правому краю *!*/
+    display: flex; /* Додати flex-контейнер */
+    justify-content: flex-start; /* Вирівнювання тексту по правому краю */
+    padding-right: 10px; /* Додає відступ справа */
+
+}
+
+.title-group-input {
+    min-width: 87%;
+    max-width: 80%;
+    width: auto;
+    min-height: 50%;
+    /*background-color: #8b5e3c;*/
+    margin: 0;
+    padding: 0;
+
+}
+.title-group-input-short {
+    /*min-width: 99%;*/
+    /*max-width: 99%;*/
+    width: auto;
+    min-height: 60%;
+    max-height: 90%;
+    /*background-color: #8b5e3c;*/
+    margin: 0;
+    padding: 0;
+
+    margin-right: 5px;
+
+}
+
+.title-group-input-date {
+    min-width: 87%;
+    max-width: 99%;
+    width: auto;
+    min-height: 50%;
+    /*background-color: #8b5e3c;*/
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Стиль для чекбоксу */
+input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Список завдань */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Рядок списку */
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+/* Відступи в рядку списку */
+li span {
+    /*flex: 1;*/
+    padding-left: 10px;
+}
+
+/*------------- headerTable------------*/
+
+/* Ширина колонок у шапці таблиці та рядках */
+.headerTable {
+    background-color: #555555;
+    color: #cccccc;
+    font-size: small;
+    width: 100%;
+    max-width: 0;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    /*padding: 5px;*/
+    /*height: auto;*/
+    /*border-bottom: 1px solid #ddd;*/
+    border-radius: 5px;
+
+
+}
+
+.tableHeader-span-cheked {
+    /*background-color: #28a745;*/
+    min-width: 3%;
+    max-width: 3%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-title {
+    /*background-color: #28a745;*/
+    min-width: 15%;
+    max-width: 15%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-unit {
+    /*background-color: #007bff;*/
+    min-width: 7%;
+    max-width: 7%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    height: auto; /* Висота підлаштовується під контент */
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+
+}
+
+.tableHeader-span-period {
+    /*background-color: #28a745;*/
+    min-width: 19%;
+    max-width: 19%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-quantity {
+    /*background-color: #28a745;*/
+    min-width: 5%;
+    max-width: 5%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-prise {
+    /*background-color: #28a745;*/
+    min-width: 6.5%;
+    max-width: 6.5%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-summ {
+    /*background-color: #28a745;*/
+    min-width: 9%;
+    max-width: 9%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-user {
+    /*background-color: #28a745;*/
+    min-width: 11.5%;
+    max-width: 11.5%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+.tableHeader-span-change {
+    /*background-color: #28a745;*/
+    min-width: 9%;
+    max-width: 12.9%;
+    white-space: normal; /* Дозволяє переносити текст */
+    word-wrap: break-word; /* Переносить слово на нову строку */
+    text-overflow: ellipsis; /* Додає "..." якщо текст не вміщується */
+    align-items: center;
+    display: inline-block; /* Використовуємо inline-block для адаптації під ширину */
+    /*height: auto; !* Висота підлаштовується під контент *!*/
+    padding: 5px; /* Можна додати для більшої зручності */
+    /*border: 1px solid grey;*/
+}
+
+/*-------------*/
+
+.table-body {
+    display: block;
+    /*width: 100%;*/
+    min-width: 100%;
+    max-width: 100%;
+    /*background-color: #555555;*/
+    /*border: 1px solid red;*/
+}
+
+.table-string {
+    min-width: 98.5%;
+    /*width: 100%;*/
+    max-width: 98.5%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Стиль для рядків в списку */
+li .span-title {
+    /*flex: 3;*/
+    min-width: 15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-cheked {
+    /*flex: 3;*/
+    min-width: 1%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-unit {
+    /*flex: 3;*/
+    min-width: 7%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-period {
+    /*flex: 2;*/
+    min-width: 20%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-quantity {
+    /*flex: 2;*/
+    min-width: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-prise {
+    /*flex: 2;*/
+    min-width: 6%;
+    max-width: 6%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-summ {
+    /*flex: 2;*/
+    min-width: 9%;
+    max-width: 9%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: flex-end;
+    /*border: 1px solid grey;*/
+}
+
+li .span-user {
+    /*flex: 2;*/
+    min-width: 10%;
+    max-width: 10%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+li .span-change {
+    /*flex: 1;*/
+    min-width: 12.9%;
+    max-width: 12.9%;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    /*border: 1px solid grey;*/
+}
+
+/* Групи для відображення / приховування */
+.data-group-hidden {
+    /*background: #28a745;*/
+    display: none;
+
+}
+
+.data-group-view {
+    /*background-color: #c79a63;*/
+    display: grid;
+}
+
+.title-group {
+    /*background-color: #007bff;*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стиль фокусу */
+button:focus {
+    outline: none;
+    /*box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);*/
+}
+
