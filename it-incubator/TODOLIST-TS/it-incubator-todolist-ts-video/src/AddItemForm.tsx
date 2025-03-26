@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import Button from '@mui/material/Button';
+import {TextField} from "@mui/material";
 
 
 
@@ -33,7 +34,16 @@ export function AddItemForm(props: AddItemFormPropsType) {
     }
 
     return <div>
-        <input
+        {/*<input*/}
+        {/*    className={error ? "error" : ""}*/}
+        {/*    value={title}*/}
+        {/*    onChange={onNewTitleChangeHandler}*/}
+        {/*    onKeyDown={onKeyPressHandler}*/}
+        {/*/>*/}
+        <TextField
+            variant="outlined"
+            // title={title}
+            label={'title'}
             className={error ? "error" : ""}
             value={title}
             onChange={onNewTitleChangeHandler}
