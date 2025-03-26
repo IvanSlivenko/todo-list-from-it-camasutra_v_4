@@ -1,4 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent, useState, useEffect} from "react";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CreateIcon from '@mui/icons-material/Create';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 type EditableSpanPropsType = {
     title: string
@@ -32,12 +37,25 @@ export function EditableSpan_test(props: EditableSpanPropsType) {
                 onChange={onChangeTitleHandler}
 
             />
-            <button onClick={activateVievMode}>=</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateVievMode}
+            >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateVievMode}>=</button>*/}
         </span>
 
         :
         <span className="span-title">{props.title}
-            <button onClick={activateEditMode}>...</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateEditMode}
+            >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateEditMode}>...</button>*/}
+
         </span>
 }
 
@@ -67,12 +85,25 @@ export function EditableSpanUnit(props: EditableSpanUnitPropsType) {
                 value={unit}
                 autoFocus={true}
                 onChange={onChangeUnitHandler}/>
-            <button onClick={activateVievModeUnit}>=</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateVievModeUnit}
+            >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateVievModeUnit}>=</button>*/}
         </span>
 
         :
         <span className="span-unit">{props.unit}
-            <button onClick={activateEditModeUnit}>...</button></span>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateEditModeUnit}
+            >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
+            {/*/!*<button onClick={activateEditModeUnit}>...</button>*/}
+            </span>
 }
 
 type EditableSpanPeriodPropsType = {
@@ -103,7 +134,13 @@ export function EditableSpanPeriod(props: EditableSpanPeriodPropsType) {
                 autoFocus={true}
                 onChange={onChangePeriodHandler}
             />
-            <button onClick={activateVievModePeriod}>=</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateVievModePeriod}
+            >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateVievModePeriod}>=</button>*/}
         </span>
 
         :
@@ -143,14 +180,26 @@ export function EditableSpanQuantity(props: EditableSpanQuantityPropsType) {
                 autoFocus={true}
                 onChange={onChangeQuantityHandler}
             />
-            <button onClick={activateVievModeQuantity}>=</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateVievModeQuantity}
+            >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateVievModeQuantity}>=</button>*/}
         </span>
 
         :
         <span
             onDoubleClick={activateEditModeQuantity}
             className="span-unit">{props.quantity}
-            <button onClick={activateEditModeQuantity}>...</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateEditModeQuantity}
+            >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateEditModeQuantity}>...</button>*/}
         </span>
 
 }
@@ -264,14 +313,26 @@ export function EditableSpanUser(props: EditableSpanUserPropsType) {
                 autoFocus={true}
                 onChange={onChangeUserHandler}
             />
-            <button onClick={activateVievModeUser}>=</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateVievModeUser}
+            >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateVievModeUser}>=</button>*/}
         </span>
 
         :
         <span
             onDoubleClick={activateEditModeUser}
             className="span-unit">{props.user}
-            <button onClick={activateEditModeUser}>...</button>
+            <IconButton
+                // aria-label="delete"
+                onClick={activateEditModeUser}
+            >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
+            {/*<button onClick={activateEditModeUser}>...</button>*/}
         </span>
 
 }
@@ -335,24 +396,49 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
             {editModeQuantity ? (
                 <span>
                     <input type="number" value={quantity} autoFocus onChange={onChangeQuantityHandler} />
-                    <button onClick={activateVievModeQuantity}>=</button>
+                    {/*<button onClick={activateVievModeQuantity}>=</button>*/}
+                    <IconButton
+                        // aria-label="delete"
+                        onClick={activateVievModeQuantity}
+                    >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
                 </span>
             ) : (
                 <span onDoubleClick={activateEditModeQuantity} className="span-unit">
                     {props.quantity}
-                    <button onClick={activateEditModeQuantity}>...</button>
+                    {/*<button onClick={activateEditModeQuantity}>...</button>*/}
+                    <IconButton
+                        // aria-label="delete"
+                        onClick={activateEditModeQuantity}
+                    >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
+
                 </span>
             )}
 
             {editModePrise ? (
                 <span>
                     <input type="number" value={prise} autoFocus onChange={onChangePriseHandler} />
-                    <button onClick={activateVievModePrise}>=</button>
+                    {/*<button onClick={activateVievModePrise}>=</button>*/}
+                    <IconButton
+                        // aria-label="delete"
+                        onClick={activateVievModePrise}
+                    >
+                <CheckCircleOutlineIcon color="disabled"/>
+            </IconButton>
                 </span>
             ) : (
                 <span onDoubleClick={activateEditModePrise} className="span-unit">
                     {props.prise}
-                    <button onClick={activateEditModePrise}>...</button>
+                    {/*<button onClick={activateEditModePrise}>...</button>*/}
+                    <IconButton
+                        // aria-label="delete"
+                        onClick={activateEditModePrise}
+                    >
+                <SettingsIcon color="disabled"/>
+            </IconButton>
                 </span>
             )}
 

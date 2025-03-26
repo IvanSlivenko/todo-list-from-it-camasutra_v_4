@@ -5,6 +5,8 @@ import {EditableSpan} from "./EditableSpan";
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Button } from "@mui/material";
 
 export type TaskType = {
     id: string,
@@ -98,28 +100,40 @@ export function Todolist(props: TodolistType) {
                                 onChange={onChangeStatusHandler}
                             />
                             <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
-                            <button onClick={onRemoveHandler}>x</button>
+                            {/*<button onClick={onRemoveHandler}>x</button>*/}
+                            <IconButton
+                                // aria-label="delete"
+                                onClick={onRemoveHandler}
+                            >
+                                <DeleteIcon color="inherit"/>
+                            </IconButton>
 
                         </li>
                     })
 
                 }
             </ul>
-            <button
+            <Button
+                variant={props.filter === "all" ? "contained" : "text"}
+                color={"success"}
                 className={props.filter === "all" ? "active-filter" : ""}
                 onClick={onAllClickHandler}
             >All
-            </button>
-            <button
+            </Button>
+            <Button
+                variant={props.filter === "active" ? "contained" : "text"}
+                color={"primary"}
                 className={props.filter === "active" ? "active-filter" : ""}
                 onClick={onActiveClickHandler}
             >Active
-            </button>
-            <button
+            </Button>
+            <Button
+                variant={props.filter === "completed" ? "contained" : "text"}
+                color={"secondary"}
                 className={props.filter === "completed" ? "active-filter" : ""}
                 onClick={onCompletedClickHandler}
             >Completed
-            </button>
+            </Button>
         </div>
 
     </div>

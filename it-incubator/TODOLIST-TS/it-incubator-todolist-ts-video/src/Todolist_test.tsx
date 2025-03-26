@@ -14,6 +14,10 @@ import {
     EditableSpanCounter
 } from "./EditableSpan_test";
 
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from "@mui/material";
+
 
 export type TaskTypeTest = {
     id: string,
@@ -103,7 +107,13 @@ export function Todolist_test(props: TodolistType) {
         <h3>
             {/*{props.title}*/}
             <EditableSpan_test title={props.title} onChange={changeTodolistTitle}/>
-            <button onClick={removeTodolist}>x</button>
+            {/*<button onClick={removeTodolist}>x</button>*/}
+            <IconButton
+                // aria-label="delete"
+                onClick={removeTodolist}
+            >
+                <DeleteIcon/>
+            </IconButton>
 
         </h3>
 
@@ -185,8 +195,13 @@ export function Todolist_test(props: TodolistType) {
                             />
                             <EditableSpanUser user={t.user} onChange={onChangeUserHandler}/>
                             <div className="span-change">
-                                {/*<button onClick={() => onChangeTask(t.id)}>...</button>*/}
-                                <button onClick={() => onRemoveTaskHandler(t.id)}>x</button>
+                                {/*<button onClick={() => onRemoveTaskHandler(t.id)}>x</button>*/}
+                                <IconButton
+                                    // aria-label="delete"
+                                    onClick={() => onRemoveTaskHandler(t.id)}
+                                >
+                                    <DeleteIcon color="inherit"/>
+                                </IconButton>
                             </div>
 
                         </li>
@@ -196,21 +211,27 @@ export function Todolist_test(props: TodolistType) {
         </div>
 
 
-        <button
+        <Button
+            variant={props.filter === "all" ? "contained" : "text"}
+            color={"success"}
             className={props.filter === "all" ? "active-filter" : ""}
             onClick={onAllClickHandler}
         >All
-        </button>
-        <button
+        </Button>
+        <Button
+            variant={props.filter === "active" ? "contained" : "text"}
+            color={"primary"}
             className={props.filter === "active" ? "active-filter" : ""}
             onClick={onActiveClickHandler}
         >Active
-        </button>
-        <button
+        </Button>
+        <Button
+            variant={props.filter === "completed" ? "contained" : "text"}
+            color={"secondary"}
             className={props.filter === "completed" ? "active-filter" : ""}
             onClick={onCompletedClickHandler}
         >Completed
-        </button>
+        </Button>
     </div>
 }
 
