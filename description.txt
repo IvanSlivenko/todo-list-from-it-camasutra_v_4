@@ -61,8 +61,19 @@ radix ua
 react Bootstrap
 
 ant disain
-
+......................................................
 material ua
+get started
+yarn add @mui/material @emotion/react @emotion/styled
+
+index.html
+link google fonts
+
+yarn add @mui/icons-material
+yarn add @material-ui/core
+
+yarn add @mui/icons-material
+
 
 ====================================================================
-00 : 00 : 00
+00 : 27 : 05

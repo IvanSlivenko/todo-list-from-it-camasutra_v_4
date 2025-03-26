@@ -1,4 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import Button from '@mui/material/Button';
+
+
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -44,7 +47,11 @@ export function AddItemForm(props: AddItemFormPropsType) {
                 null
 
         }
-
-        <button onClick={addTask}>+</button>
+        {/*<button onClick={addTask}>+</button>*/}
+        <Button
+            onClick={addTask}
+            variant="contained"
+            color="primary"
+        >+</Button>
     </div>
 }

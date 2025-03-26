@@ -3,6 +3,9 @@ import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 export type TaskType = {
     id: string,
     title: string,
@@ -45,11 +48,11 @@ export function Todolist(props: TodolistType) {
 
     }
 
-    const changeTodolistTitle = (newTitle: string)=> {
+    const changeTodolistTitle = (newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle)
     }
 
-    const addTask = (title: string)=> {
+    const addTask = (title: string) => {
         props.addTask(title, props.id)
     }
 
@@ -57,7 +60,14 @@ export function Todolist(props: TodolistType) {
         <h3>
             {/*{props.title}*/}
             <EditableSpan title={props.title} onChange={changeTodolistTitle}/>
-                <button onClick={removeTodolist}>x</button>
+            {/*<button onClick={removeTodolist}>x</button>*/}
+            <IconButton
+                // aria-label="delete"
+                onClick={removeTodolist}
+            >
+                <DeleteIcon/>
+            </IconButton>
+
         </h3>
 
         <div>
