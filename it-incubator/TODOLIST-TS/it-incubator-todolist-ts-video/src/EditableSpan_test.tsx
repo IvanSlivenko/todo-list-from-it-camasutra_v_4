@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
     title: string
@@ -30,12 +31,19 @@ export function EditableSpan_test(props: EditableSpanPropsType) {
 
     return editMode ?
         <span>
-            <input
+            {/*<input*/}
+            {/*    value={title}*/}
+            {/*    onBlur={activateVievMode}*/}
+            {/*    autoFocus={true}*/}
+            {/*    onChange={onChangeTitleHandler}*/}
+
+            {/*/>*/}
+            <TextField
+                label={'Товар'}
                 value={title}
                 onBlur={activateVievMode}
                 autoFocus={true}
                 onChange={onChangeTitleHandler}
-
             />
             <IconButton
                 // aria-label="delete"
@@ -81,10 +89,17 @@ export function EditableSpanUnit(props: EditableSpanUnitPropsType) {
     }
     return editModeUnit ?
         <span>
-            <input
+            {/*<input*/}
+            {/*    value={unit}*/}
+            {/*    autoFocus={true}*/}
+            {/*    onChange={onChangeUnitHandler}/>*/}
+            <TextField
+                label={'Од.виміру'}
                 value={unit}
                 autoFocus={true}
-                onChange={onChangeUnitHandler}/>
+                onChange={onChangeUnitHandler}
+            />
+
             <IconButton
                 // aria-label="delete"
                 onClick={activateVievModeUnit}
@@ -128,7 +143,14 @@ export function EditableSpanPeriod(props: EditableSpanPeriodPropsType) {
 
     return editModePeriod ?
         <span>
-            <input
+            {/*<input*/}
+            {/*    type="date"*/}
+            {/*    value={period}*/}
+            {/*    autoFocus={true}*/}
+            {/*    onChange={onChangePeriodHandler}*/}
+            {/*/>*/}
+            <TextField
+                label={'Період'}
                 type="date"
                 value={period}
                 autoFocus={true}
@@ -180,6 +202,7 @@ export function EditableSpanQuantity(props: EditableSpanQuantityPropsType) {
                 autoFocus={true}
                 onChange={onChangeQuantityHandler}
             />
+
             <IconButton
                 // aria-label="delete"
                 onClick={activateVievModeQuantity}
@@ -307,8 +330,14 @@ export function EditableSpanUser(props: EditableSpanUserPropsType) {
     }
     return editModeUser ?
         <span>
-            <input
-                type="text"
+            {/*<input*/}
+            {/*    type="text"*/}
+            {/*    value={user}*/}
+            {/*    autoFocus={true}*/}
+            {/*    onChange={onChangeUserHandler}*/}
+            {/*/>*/}
+            <TextField
+                label={'Користувач'}
                 value={user}
                 autoFocus={true}
                 onChange={onChangeUserHandler}
@@ -395,7 +424,14 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
         <>
             {editModeQuantity ? (
                 <span>
-                    <input type="number" value={quantity} autoFocus onChange={onChangeQuantityHandler} />
+                    {/*<input type="number" value={quantity} autoFocus onChange={onChangeQuantityHandler} />*/}
+                    <TextField
+                        label={'Кількість'}
+                        type="number"
+                        value={quantity}
+                        autoFocus={true}
+                        onChange={onChangeQuantityHandler}
+                    />
                     {/*<button onClick={activateVievModeQuantity}>=</button>*/}
                     <IconButton
                         // aria-label="delete"
@@ -420,7 +456,14 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
 
             {editModePrise ? (
                 <span>
-                    <input type="number" value={prise} autoFocus onChange={onChangePriseHandler} />
+                    {/*<input type="number" value={prise} autoFocus onChange={onChangePriseHandler} />*/}
+                    <TextField
+                        label={'Ціна'}
+                        type="number"
+                        value={prise}
+                        autoFocus={true}
+                        onChange={onChangePriseHandler}
+                    />
                     {/*<button onClick={activateVievModePrise}>=</button>*/}
                     <IconButton
                         // aria-label="delete"
