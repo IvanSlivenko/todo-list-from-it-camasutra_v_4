@@ -17,6 +17,11 @@ import {
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from "@mui/material";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import Checkbox from "@mui/material/Checkbox";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
 export type TaskTypeTest = {
@@ -175,11 +180,21 @@ export function Todolist_test(props: TodolistType) {
                                 "table-string"
                             }
                             key={t.id}>
-                            <input
-                                className="span-cheked"
-                                type="checkbox"
+                            {/*<input*/}
+                            {/*    className="span-cheked"*/}
+                            {/*    type="checkbox"*/}
+                            {/*    checked={t.isDone}*/}
+                            {/*    onChange={onChangeHandler}*/}
+                            {/*/>*/}
+                            <Checkbox
                                 checked={t.isDone}
                                 onChange={onChangeHandler}
+                                // icon={<FavoriteBorder/>}
+                                // checkedIcon={<Favorite/>}
+                                // icon={<BookmarkBorderIcon />}
+                                // checkedIcon={<BookmarkIcon />}
+                                defaultChecked
+                                color="success"
                             />
 
                             <EditableSpan_test title={t.title} onChange={onChangeTitleHandler}/>

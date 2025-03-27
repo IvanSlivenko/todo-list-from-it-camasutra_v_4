@@ -389,7 +389,6 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                     type={"number"}
                     size="small"
                     variant="outlined"
-                    // title={title}
                     label={'Cума'}
                     className={error ? "error" : ""}
                     value={newTaskSumm}

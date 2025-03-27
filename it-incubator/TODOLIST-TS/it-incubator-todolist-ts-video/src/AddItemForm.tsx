@@ -29,7 +29,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
             props.addItem(title)
             setTitle("")
         } else {
-            setError("!!!!!")
+            setError("Поле обов'язкове")
         }
     }
 
@@ -41,6 +41,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
         {/*    onKeyDown={onKeyPressHandler}*/}
         {/*/>*/}
         <TextField
+            size={"small"}
             variant="outlined"
             // title={title}
             label={'title'}
@@ -48,15 +49,17 @@ export function AddItemForm(props: AddItemFormPropsType) {
             value={title}
             onChange={onNewTitleChangeHandler}
             onKeyDown={onKeyPressHandler}
+            error={!!error}
+            helperText={error}
         />
-        {
-            error
-                ?
-                <div className={error ? "error-message" : ""}> Field is requared </div>
-                :
-                null
+        {/*{*/}
+        {/*    error*/}
+        {/*        ?*/}
+        {/*        <div className={error ? "error-message" : ""}> Field is requared </div>*/}
+        {/*        :*/}
+        {/*        null*/}
 
-        }
+        {/*}*/}
         {/*<button onClick={addTask}>+</button>*/}
         <Button
             onClick={addTask}

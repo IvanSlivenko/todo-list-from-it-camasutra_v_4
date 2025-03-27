@@ -6,7 +6,10 @@ import {EditableSpan} from "./EditableSpan";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Button } from "@mui/material";
+import {Button} from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 export type TaskType = {
     id: string,
@@ -94,10 +97,17 @@ export function Todolist(props: TodolistType) {
                             key={t.id}
                             className={t.isDone === true ? "is-done" : ""}
                         >
-                            <input
-                                type="checkbox"
+                            {/*<input*/}
+                            {/*    type="checkbox"*/}
+                            {/*    checked={t.isDone}*/}
+                            {/*    onChange={onChangeStatusHandler}*/}
+                            {/*/>*/}
+
+                            <Checkbox
                                 checked={t.isDone}
                                 onChange={onChangeStatusHandler}
+                                icon={<FavoriteBorder/>}
+                                checkedIcon={<Favorite/>}
                             />
                             <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
                             {/*<button onClick={onRemoveHandler}>x</button>*/}
