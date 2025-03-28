@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SettingsIcon from '@mui/icons-material/Settings';
+import EditIcon from '@mui/icons-material/Edit';
 import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
@@ -58,9 +59,12 @@ export function EditableSpan_test(props: EditableSpanPropsType) {
         <span className="span-title">{props.title}
             <IconButton
                 // aria-label="delete"
+                size={"small"}
                 onClick={activateEditMode}
             >
-                <SettingsIcon color="disabled"/>
+                {/*<SettingsIcon color="disabled"/>*/}
+                <EditIcon color="disabled"/>
+
             </IconButton>
             {/*<button onClick={activateEditMode}>...</button>*/}
 
@@ -113,9 +117,11 @@ export function EditableSpanUnit(props: EditableSpanUnitPropsType) {
         <span className="span-unit">{props.unit}
             <IconButton
                 // aria-label="delete"
+                size={"small"}
                 onClick={activateEditModeUnit}
             >
-                <SettingsIcon color="disabled"/>
+                {/*<SettingsIcon color="disabled"/>*/}
+                <EditIcon color="disabled"/>
             </IconButton>
             {/*/!*<button onClick={activateEditModeUnit}>...</button>*/}
             </span>
@@ -171,6 +177,13 @@ export function EditableSpanPeriod(props: EditableSpanPeriodPropsType) {
             className="span-unit"
         >
             {props.period}
+            <IconButton
+                // aria-label="delete"
+                onClick={activateEditModePeriod}
+                size={"small"}
+            >
+                <EditIcon color="disabled"/>
+            </IconButton>
         </span>
 }
 
@@ -357,9 +370,10 @@ export function EditableSpanUser(props: EditableSpanUserPropsType) {
             className="span-unit">{props.user}
             <IconButton
                 // aria-label="delete"
+                size={"small"}
                 onClick={activateEditModeUser}
             >
-                <SettingsIcon color="disabled"/>
+                <EditIcon color="disabled"/>
             </IconButton>
             {/*<button onClick={activateEditModeUser}>...</button>*/}
         </span>
@@ -375,7 +389,6 @@ type EditableSpanCounterPropsType = {
     onChangePrise: (value: number) => void
     onChangeSumm: (value: number) => void
 }
-
 
 
 export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
@@ -438,6 +451,8 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
                         onClick={activateVievModeQuantity}
                     >
                 <CheckCircleOutlineIcon color="disabled"/>
+
+
             </IconButton>
                 </span>
             ) : (
@@ -446,9 +461,11 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
                     {/*<button onClick={activateEditModeQuantity}>...</button>*/}
                     <IconButton
                         // aria-label="delete"
+                        size={"small"}
                         onClick={activateEditModeQuantity}
                     >
-                <SettingsIcon color="disabled"/>
+                {/*<SettingsIcon color="disabled"/>*/}
+                        <EditIcon color="disabled"/>
             </IconButton>
 
                 </span>
@@ -478,9 +495,11 @@ export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
                     {/*<button onClick={activateEditModePrise}>...</button>*/}
                     <IconButton
                         // aria-label="delete"
+                        size={"small"}
                         onClick={activateEditModePrise}
                     >
-                <SettingsIcon color="disabled"/>
+                {/*<SettingsIcon color="disabled"/>*/}
+                        <EditIcon color="disabled"/>
             </IconButton>
                 </span>
             )}

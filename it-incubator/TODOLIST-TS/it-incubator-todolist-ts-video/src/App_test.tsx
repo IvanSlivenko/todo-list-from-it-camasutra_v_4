@@ -8,6 +8,15 @@ import {AddItemForm_test} from "./AddItemForm_test";
 import {tasks_test1, tasks_test2} from "./tasks_test";
 import {v1} from "uuid";
 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
+
 export type FilterValuesType = "all" | "completed" | "active"
 
 export type TodolistType = {
@@ -203,6 +212,26 @@ function App_test() {
 
     return (
         <div className="App_custome">
+
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            News
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box>
 
             <div className="app-header">
                 <AddItemForm addItem={addTodolist}/>
