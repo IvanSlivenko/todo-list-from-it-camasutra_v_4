@@ -16,12 +16,13 @@ import {
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button } from "@mui/material";
+import {Button} from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import Paper from "@mui/material/Paper";
 
 
 export type TaskTypeTest = {
@@ -49,24 +50,24 @@ export type TodolistType = {
     changeTaskStatus: (taskId: string, isDone: boolean,
                        todolistId: string) => void,
     changeTaskTitle: (id: string, newTitle: string,
-                       todolistId: string) => void,
+                      todolistId: string) => void,
     changeTaskUnit: (id: string, newUnit: string,
-                       todolistId: string) => void,
-
-    changeTaskPeriod: (id: string, newPeriod: string,
                      todolistId: string) => void,
 
-    changeTaskQuantity: (id: string, newQuantity: number,
+    changeTaskPeriod: (id: string, newPeriod: string,
                        todolistId: string) => void,
+
+    changeTaskQuantity: (id: string, newQuantity: number,
+                         todolistId: string) => void,
 
     changeTaskPrise: (id: string, newPrise: number,
-                       todolistId: string) => void,
+                      todolistId: string) => void,
 
     changeTaskSumm: (id: string, newSumm: number,
-                       todolistId: string) => void,
+                     todolistId: string) => void,
 
     changeTaskUser: (id: string, newUser: string,
-                       todolistId: string) => void,
+                     todolistId: string) => void,
 
     filter: FilterValuesType
     removeTodolist: (todolistId: string) => void
@@ -111,7 +112,9 @@ export function Todolist_test(props: TodolistType) {
 
         <h3>
             {/*{props.title}*/}
-            <EditableSpan_test title={props.title} onChange={changeTodolistTitle}/>
+            <Paper elevation={3}>
+                <EditableSpan_test title={props.title} onChange={changeTodolistTitle}/>
+            </Paper>
             {/*<button onClick={removeTodolist}>x</button>*/}
             <IconButton
                 // aria-label="delete"
@@ -121,9 +124,14 @@ export function Todolist_test(props: TodolistType) {
             </IconButton>
 
         </h3>
-
-        <AddItemForm_test addItem={addTask} id={props.id}/>
-
+        <Paper elevation={3}
+               style={{marginBottom: '5px'}}
+        >
+            <AddItemForm_test addItem={addTask} id={props.id}/>
+        </Paper>
+        <Paper elevation={3}
+               style={{marginBottom: '5px'}}
+        >
         <div className="headerTable">
             <span className="tableHeader-span-cheked">S</span>
             <span className="tableHeader-span-title">Товар</span>
@@ -135,8 +143,9 @@ export function Todolist_test(props: TodolistType) {
             <span className="tableHeader-span-user">Покупець</span>
             <span className="tableHeader-span-change">Дії</span>
         </div>
+        </Paper>
         <div className="table-body">
-            <ul>
+            <div>
                 {
                     props.tasks.map((t) => {
                         const onRemoveTaskHandler = (id: string) => {
@@ -172,57 +181,61 @@ export function Todolist_test(props: TodolistType) {
                             props.changeTaskUser(t.id, newUser, props.id)
                         }
 
-                        return <li
-                            className={t.isDone === true
-                                ?
-                                "table-string" && "is-done"
-                                :
-                                "table-string"
-                            }
-                            key={t.id}>
-                            {/*<input*/}
-                            {/*    className="span-cheked"*/}
-                            {/*    type="checkbox"*/}
-                            {/*    checked={t.isDone}*/}
-                            {/*    onChange={onChangeHandler}*/}
-                            {/*/>*/}
-                            <Checkbox
-                                checked={t.isDone}
-                                onChange={onChangeHandler}
-                                // icon={<FavoriteBorder/>}
-                                // checkedIcon={<Favorite/>}
-                                // icon={<BookmarkBorderIcon />}
-                                // checkedIcon={<BookmarkIcon />}
-                                defaultChecked
-                                color="success"
-                            />
+                        return <Paper elevation={3}
+                                      style={{marginBottom: '5px'}}
+                        >
+                            <li
+                                className={t.isDone === true
+                                    ?
+                                    "table-string" && "is-done"
+                                    :
+                                    "table-string"
+                                }
+                                key={t.id}>
+                                {/*<input*/}
+                                {/*    className="span-cheked"*/}
+                                {/*    type="checkbox"*/}
+                                {/*    checked={t.isDone}*/}
+                                {/*    onChange={onChangeHandler}*/}
+                                {/*/>*/}
+                                <Checkbox
+                                    checked={t.isDone}
+                                    onChange={onChangeHandler}
+                                    // icon={<FavoriteBorder/>}
+                                    // checkedIcon={<Favorite/>}
+                                    // icon={<BookmarkBorderIcon />}
+                                    // checkedIcon={<BookmarkIcon />}
+                                    defaultChecked
+                                    color="success"
+                                />
 
-                            <EditableSpan_test title={t.title} onChange={onChangeTitleHandler}/>
-                            <EditableSpanUnit unit={t.unit} onChange={onChangeUnitHandler}/>
-                            <EditableSpanPeriod period={t.period} onChange={onChangePeriodHandler}/>
-                            <EditableSpanCounter
-                                quantity={t.quantity}
-                                prise={t.prise}
-                                summ={t.summ}
-                                onChangeQuantity={onChangeQuantityHandler}
-                                onChangePrise={onChangePriseHandler}
-                                onChangeSumm={onChangeSummHandler}
-                            />
-                            <EditableSpanUser user={t.user} onChange={onChangeUserHandler}/>
-                            <div className="span-change">
-                                {/*<button onClick={() => onRemoveTaskHandler(t.id)}>x</button>*/}
-                                <IconButton
-                                    // aria-label="delete"
-                                    onClick={() => onRemoveTaskHandler(t.id)}
-                                >
-                                    <DeleteIcon color="inherit"/>
-                                </IconButton>
-                            </div>
+                                <EditableSpan_test title={t.title} onChange={onChangeTitleHandler}/>
+                                <EditableSpanUnit unit={t.unit} onChange={onChangeUnitHandler}/>
+                                <EditableSpanPeriod period={t.period} onChange={onChangePeriodHandler}/>
+                                <EditableSpanCounter
+                                    quantity={t.quantity}
+                                    prise={t.prise}
+                                    summ={t.summ}
+                                    onChangeQuantity={onChangeQuantityHandler}
+                                    onChangePrise={onChangePriseHandler}
+                                    onChangeSumm={onChangeSummHandler}
+                                />
+                                <EditableSpanUser user={t.user} onChange={onChangeUserHandler}/>
+                                <div className="span-change">
+                                    {/*<button onClick={() => onRemoveTaskHandler(t.id)}>x</button>*/}
+                                    <IconButton
+                                        // aria-label="delete"
+                                        onClick={() => onRemoveTaskHandler(t.id)}
+                                    >
+                                        <DeleteIcon color="inherit"/>
+                                    </IconButton>
+                                </div>
 
-                        </li>
+                            </li>
+                        </Paper>
                     })
                 }
-            </ul>
+            </div>
         </div>
 
 

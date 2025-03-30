@@ -78,7 +78,7 @@ export function Todolist(props: TodolistType) {
         <div>
 
             <AddItemForm addItem={addTask}/>
-            <ul>
+            <div>
                 {
                     props.tasks.map((t) => {
 
@@ -93,7 +93,7 @@ export function Todolist(props: TodolistType) {
                         const onChangeTitleHandler = (newValue: string) => {
                             props.changeTaskTitle(t.id, newValue, props.id)
                         }
-                        return <li
+                        return <div
                             key={t.id}
                             className={t.isDone === true ? "is-done" : ""}
                         >
@@ -118,11 +118,11 @@ export function Todolist(props: TodolistType) {
                                 <DeleteIcon color="inherit"/>
                             </IconButton>
 
-                        </li>
+                        </div>
                     })
 
                 }
-            </ul>
+            </div>
             <Button
                 variant={props.filter === "all" ? "contained" : "text"}
                 color={"success"}

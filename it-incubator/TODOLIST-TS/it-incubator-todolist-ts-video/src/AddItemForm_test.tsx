@@ -262,6 +262,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                 {/*    onKeyDown={onKeyDownUserHandler}*/}
                 {/*/>*/}
                 <TextField
+                    style={{paddingRight: '5px'}}
                     size="small"
                     variant="outlined"
                     // title={title}
@@ -322,6 +323,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                 {/*/>*/}
 
                 <TextField
+                    style={{paddingRight: '5px'}}
                     size="small"
                     variant="outlined"
                     // title={title}
@@ -375,6 +377,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
             </div>
             <div className='input-Mit-Label-Midle'>
                 <TextField
+                    style={{paddingRight: '5px'}}
                     type={"number"}
                     size="small"
                     variant="outlined"

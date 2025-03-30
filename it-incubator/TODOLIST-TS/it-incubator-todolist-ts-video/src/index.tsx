@@ -18,12 +18,12 @@ root.render(
 
         <App/>
 
-        <Border/>
+        {/*<Border/>*/}
 
         <App_test/>
 
 
-        <Border/>
+        {/*<Border/>*/}
         <Counter/>
     </>
 
