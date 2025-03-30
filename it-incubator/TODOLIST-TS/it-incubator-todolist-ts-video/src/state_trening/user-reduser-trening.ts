@@ -2,6 +2,7 @@ type StateType = {
     age: number
     childrenCount: number
     name: string
+    status: string
 }
 
 type ActionType = {
@@ -10,7 +11,7 @@ type ActionType = {
 }
 
 
-export const userReducer = (state: StateType, action: ActionType) => {
+export const userReducerTrening = (state: StateType, action: ActionType) => {
 
     switch (action.type) {
         case 'INCREMENT-AGE':
@@ -21,6 +22,12 @@ export const userReducer = (state: StateType, action: ActionType) => {
 
         case 'CHANGE-NAME':
             return {...state, name: action.newName};
+
+        case 'CHANGE-STATUS-USER':
+            return {...state, status: action.newStatus};
+
+        case 'CHANGE-STATUS-GUEST':
+            return {...state, status: action.newStatus};
 
         default:
             throw new Error("I don't understand this action type")
