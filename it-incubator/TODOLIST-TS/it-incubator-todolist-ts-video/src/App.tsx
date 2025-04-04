@@ -86,9 +86,6 @@ function App() {
         }
     }
 
-    // let tasksForTodolist = tasksObj;
-
-
     function changeFilter(value: FilterValuesType, todolistId: string) {
         // setFilter(value)
         let todolist = todolists.find(t => t.id === todolistId);
