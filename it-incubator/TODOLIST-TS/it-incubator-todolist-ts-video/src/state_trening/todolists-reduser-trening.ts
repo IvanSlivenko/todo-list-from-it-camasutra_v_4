@@ -8,24 +8,25 @@ import {v1} from "uuid";
 // }
 
 export type RemoveTodolistActionType = {
-    type: 'REMOVE-TODOLIST',
+    type: 'REMOVE-TODOLIST'
     id: string
 }
 
 export type AddTodolistActionType = {
-    type: 'ADD-TODOLIST',
+    type: 'ADD-TODOLIST'
     title: string
+    todolistId: string
 }
 
 export type ChangeTodolistTitleActionType = {
-    type: 'CHANGE-TODOLIST-TITLE',
-    id: string,
+    type: 'CHANGE-TODOLIST-TITLE'
+    id: string
     title: string
 }
 
 export type ChangeTodolistFilterActionType = {
-    type: 'CHANGE-TODOLIST-FILTER',
-    id: string,
+    type: 'CHANGE-TODOLIST-FILTER'
+    id: string
     filter: FilterValuesType
 }
 
@@ -43,7 +44,7 @@ export const todolistsReducerTrening = (state: Array<TodolistType>, action: Acti
 
         case  'ADD-TODOLIST': {
             return [...state, {
-                id : v1(),
+                id : action.todolistId,
                 title: action.title,
                 filter: "all"
             }]
@@ -77,7 +78,7 @@ export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType =
 }
 
 export const addTodolistAC = (newTodolistTitle: string): AddTodolistActionType => {
-    return {type: 'ADD-TODOLIST', title: newTodolistTitle}
+    return {type: 'ADD-TODOLIST', title: newTodolistTitle, todolistId: v1() }
 }
 
 export const changeTodolistTitleAC = (title: string, todolistId: string): ChangeTodolistTitleActionType => {
