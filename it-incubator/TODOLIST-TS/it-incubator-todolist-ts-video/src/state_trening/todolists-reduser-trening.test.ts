@@ -1,11 +1,11 @@
 import {v1} from 'uuid'
 
-import {TodolistType, FilterValuesType} from '../App_test'
+import {TodolistType, FilterValuesType} from '../App-trening'
 import {
-    removeTodolistAC,
-    addTodolistAC,
-    changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    removeTodolistTreningAC,
+    addTodolistTreningAC,
+    changeTodolistFilterTreningAC,
+    changeTodolistTitleTreningAC,
     todolistsReducerTrening} from "../state_trening/todolists-reduser-trening";
 
 
@@ -23,7 +23,7 @@ test('correct todolist should be removed', ()=> {
     //     type: 'REMOVE-TODOLIST',
     //     id: todolistId1})
 
-    const endState = todolistsReducerTrening(startState, removeTodolistAC(todolistId1))
+    const endState = todolistsReducerTrening(startState, removeTodolistTreningAC(todolistId1))
 
     expect(endState.length).toBe(1);
     expect(endState[0].id).toBe(todolistId2);
@@ -44,7 +44,7 @@ test('correct todolist should be added', ()=> {
     //     type: 'ADD-TODOLIST',
     //     title: newTodolistTitle})
 
-    const endState = todolistsReducerTrening(startState, addTodolistAC(newTodolistTitle))
+    const endState = todolistsReducerTrening(startState, addTodolistTreningAC(newTodolistTitle))
 
     expect(endState.length).toBe(3);
     expect(endState[2].title).toBe(newTodolistTitle);
@@ -70,7 +70,7 @@ test('correct todolist should change its name', ()=> {
     //
     // const endState = todolistsReducerTrening(startState, action )
 
-    const action = changeTodolistTitleAC(newTodolistTitle, todolistId2);
+    const action = changeTodolistTitleTreningAC(newTodolistTitle, todolistId2);
 
 
     const endState = todolistsReducerTrening(startState, action )
@@ -92,7 +92,7 @@ test('correct filter of todolist should be changed', ()=> {
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
 
-    const action = changeTodolistFilterAC(newFilter, todolistId2)
+    const action = changeTodolistFilterTreningAC(newFilter, todolistId2)
         // {
         //
         // type: 'CHANGE-TODOLIST-FILTER' as const,

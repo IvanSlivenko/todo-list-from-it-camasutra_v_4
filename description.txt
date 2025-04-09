@@ -101,3 +101,13 @@ https://youtu.be/n1KjkwyO404?list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00
 
 ======================================================================
 01 : 15 : 17
+
+--------------------------------------------------------------------- Lesson 10
+https://youtu.be/zHn8P9zHKqQ?list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00
+
+reducer = state + action => newState
+let = [state, dispatch]=useReducer(reducer, startState)
+
+
+=====================================================================
+00 : 15 : 23

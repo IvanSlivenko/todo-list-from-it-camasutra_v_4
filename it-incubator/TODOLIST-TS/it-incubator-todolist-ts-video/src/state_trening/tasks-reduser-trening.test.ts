@@ -1,11 +1,11 @@
-import {tasksReducer,
-    removeTaskAC,
-    addTaskAC,
-    changeTaskStatusAC,
-    changeTaskTitleAC
+import {tasksReducerTrening,
+    removeTaskTreningAC,
+    addTaskTreningAC,
+    changeTaskStatuTreningsAC,
+    changeTaskTitleTreningAC
 } from "./tasks-reduser-trening";
 import {TasksStateType} from '../App'
-import {addTodolistAC, removeTodolistAC} from "../state_trening/todolists-reduser-trening";
+import {addTodolistTreningAC, removeTodolistTreningAC} from "../state_trening/todolists-reduser-trening";
 
 
 
@@ -25,9 +25,9 @@ test('correct task should be deleted from correct array', () => {
     };
 
 
-    const action = removeTaskAC("2", "todolistId2");
+    const action = removeTaskTreningAC("2", "todolistId2");
 
-    const endState = tasksReducer(startState, action);
+    const endState = tasksReducerTrening(startState, action);
 
     expect(endState["todolistId1"].length).toBe(3);
     expect(endState["todolistId2"].length).toBe(2);
@@ -50,9 +50,9 @@ test('correct task should be add from correct array', () => {
         ]
     };
 
-    const action = addTaskAC("juce", "todolistId2");
+    const action = addTaskTreningAC("juce", "todolistId2");
 
-    const endState = tasksReducer(startState, action);
+    const endState = tasksReducerTrening(startState, action);
 
     expect(endState["todolistId1"].length).toBe(3);
     expect(endState["todolistId2"].length).toBe(4);
@@ -77,9 +77,9 @@ test('status specified task should be changed', () => {
     };
 
 
-    const action = changeTaskStatusAC("2", false, "todolistId2");
+    const action = changeTaskStatuTreningsAC("2", false, "todolistId2");
 
-    const endState = tasksReducer(startState, action);
+    const endState = tasksReducerTrening(startState, action);
 
     expect(endState["todolistId2"][1].isDone).toBe(false);
     expect(endState["todolistId1"][1].isDone).toBe(true);
@@ -101,8 +101,8 @@ test('title specified task should be changed', () => {
         ]
     };
 
-    const action = changeTaskTitleAC("2", "Milkyway", "todolistId2");
-    const endState = tasksReducer(startState, action);
+    const action = changeTaskTitleTreningAC("2", "Milkyway", "todolistId2");
+    const endState = tasksReducerTrening(startState, action);
 
     expect(endState["todolistId2"][1].title).toBe("Milkyway");
     expect(endState["todolistId1"][1].title).toBe("JS");
@@ -125,9 +125,9 @@ test('new property with new array  should be added when new todolist is added', 
 
 
 
-    const action = addTodolistAC("new todolist");
+    const action = addTodolistTreningAC("new todolist");
 
-    const endState = tasksReducer(startState, action);
+    const endState = tasksReducerTrening(startState, action);
 
 
     const keys = Object.keys(endState);
@@ -157,8 +157,8 @@ test('property with todolist shoul be deleted',()=>{
         ]
     };
 
-    const action = removeTodolistAC("todolistId2");
-    const endState = tasksReducer(startState, action)
+    const action = removeTodolistTreningAC("todolistId2");
+    const endState = tasksReducerTrening(startState, action)
 
     const keys = Object.keys(endState);
 

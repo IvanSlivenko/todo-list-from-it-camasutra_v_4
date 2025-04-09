@@ -16,6 +16,19 @@ export type AddTaskActionType = {
     todolistId: string
 }
 
+export type AddTaskActionTreningType = {
+    type: 'ADD-TASK-TRENING'
+    title: string
+    todolistId: string
+    isDone: boolean,
+    period: string,
+    user: string,
+    summ: number,
+    quantity: number,
+    prise: number,
+    unit: string
+}
+
 export type ChangeTaskStatusActionType = {
     type: 'CHANGE-TASK-STATUS'
     isDone: boolean
@@ -36,10 +49,11 @@ export type ActionsType = RemoveTaskActionType
     | ChangeTaskStatusActionType
     | ChangeTaskTitleActionType
     | AddTodolistActionType
+    | AddTaskActionTreningType
     | RemoveTodolistActionType
 
 
-export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
+export const tasksReducerTrening = (state: TasksStateType, action: ActionsType): TasksStateType => {
 
     switch (action.type) {
         case  'REMOVE-TASK': {
@@ -57,6 +71,26 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
                 id: v1(),
                 title: action.title,
                 isDone: false
+            };
+            const newTasks = [newTask, ...tasks];
+            stateCopy[action.todolistId] = newTasks;
+            return stateCopy;
+
+        }
+
+        case  'ADD-TASK-TRENING': {
+            const stateCopy = {...state};
+            const tasks = stateCopy[action.todolistId]
+            const newTask = {
+                id: v1(),
+                title: action.title,
+                isDone: false,
+                period: action.period,
+                user: action.user,
+                summ: action.summ,
+                quantity: action.quantity,
+                prise: action.prise,
+                unit: action.unit
             };
             const newTasks = [newTask, ...tasks];
             stateCopy[action.todolistId] = newTasks;
@@ -88,9 +122,15 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
 
         case 'ADD-TODOLIST': {
             const stateCopy = {...state};
-            stateCopy[action.todolistId]=[];
+            stateCopy[action.todolistId] = [];
 
             return stateCopy
+        }
+
+        case 'REMOVE-TODOLIST': {
+            const stateCopy = {...state};
+            delete stateCopy[action.id];
+            return stateCopy;
         }
 
         default:
@@ -98,23 +138,47 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
     }
 }
 
-export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
+export const removeTaskTreningAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
     return {type: 'REMOVE-TASK', todolistId, taskId}
 }
 
-export const addTaskAC = (title: string, todolistId: string): AddTaskActionType => {
+export const addTaskTreningAC = (title: string, todolistId: string): AddTaskActionType => {
     return {type: 'ADD-TASK', title, todolistId}
 }
 
-export const changeTaskStatusAC = (taskId: string,
-                                   isDone: boolean,
-                                   todolistId: string): ChangeTaskStatusActionType => {
+export const addTaskTreningCustAC = (
+    title: string,
+    todolistId: string,
+    isDone: boolean,
+    period: string,
+    user: string,
+    summ: number,
+    quantity: number,
+    prise: number,
+    unit: string
+
+): AddTaskActionTreningType => {
+    return {type: 'ADD-TASK-TRENING',
+        title,
+        todolistId,
+        isDone,
+        period,
+        user,
+        summ,
+        quantity,
+        prise,
+        unit}
+}
+
+export const changeTaskStatuTreningsAC = (taskId: string,
+                                          isDone: boolean,
+                                          todolistId: string): ChangeTaskStatusActionType => {
     return {type: 'CHANGE-TASK-STATUS', isDone, todolistId, taskId}
 }
 
-export const changeTaskTitleAC = (taskId: string,
-                                  title: string,
-                                  todolistId: string): ChangeTaskTitleActionType => {
+export const changeTaskTitleTreningAC = (taskId: string,
+                                         title: string,
+                                         todolistId: string): ChangeTaskTitleActionType => {
     return {type: 'CHANGE-TASK-TITLE', title, todolistId, taskId}
 }
 

@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {FilterValuesType} from "./App_test";
+import {FilterValuesType} from "./App-trening";
 import './Todolist_test.css'
 // import {AddItemForm} from "./AddItemForm_test";
 import {AddItemForm_test} from "./AddItemForm_test";

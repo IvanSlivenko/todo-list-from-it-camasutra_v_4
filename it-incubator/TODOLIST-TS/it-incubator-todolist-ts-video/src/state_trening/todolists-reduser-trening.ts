@@ -1,4 +1,4 @@
-import {FilterValuesType, TodolistType} from "../App_test";
+import {FilterValuesType, TodolistType} from "../App-trening";
 import {v1} from "uuid";
 
 
@@ -73,18 +73,18 @@ export const todolistsReducerTrening = (state: Array<TodolistType>, action: Acti
     }
 }
 
-export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
+export const removeTodolistTreningAC = (todolistId: string): RemoveTodolistActionType => {
     return {type: 'REMOVE-TODOLIST', id: todolistId}
 }
 
-export const addTodolistAC = (newTodolistTitle: string): AddTodolistActionType => {
+export const addTodolistTreningAC = (newTodolistTitle: string): AddTodolistActionType => {
     return {type: 'ADD-TODOLIST', title: newTodolistTitle, todolistId: v1() }
 }
 
-export const changeTodolistTitleAC = (title: string, todolistId: string): ChangeTodolistTitleActionType => {
+export const changeTodolistTitleTreningAC = (title: string, todolistId: string): ChangeTodolistTitleActionType => {
     return {type: 'CHANGE-TODOLIST-TITLE', title: title, id: todolistId}
 }
 
-export const changeTodolistFilterAC = (filter: FilterValuesType, id: string): ChangeTodolistFilterActionType => {
+export const changeTodolistFilterTreningAC = (filter: FilterValuesType, id: string): ChangeTodolistFilterActionType => {
     return {type: 'CHANGE-TODOLIST-FILTER', filter: filter, id: id}
 }

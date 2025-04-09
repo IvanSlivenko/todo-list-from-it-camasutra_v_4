@@ -1,5 +1,5 @@
 import React, {KeyboardEvent, ChangeEvent, useState, useEffect} from "react";
-import {FilterValuesType} from "./App_test";
+import {FilterValuesType} from "./App-trening";
 import './Todolist_test.css'
 
 export type TaskType = {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {Todolist_test, TaskTypeTest} from "./Todolist_test";
@@ -18,6 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
+import {todolistsReducerTrening} from "./state_trening/todolists-reduser-trening";
+import {addTaskTreningCustAC, removeTaskTreningAC, tasksReducerTrening} from "./state_trening/tasks-reduser-trening";
 
 export type FilterValuesType = "all" | "completed" | "active"
 
@@ -31,55 +33,63 @@ export type TasksStateType = {
     [key: string]: Array<TaskTypeTest>
 }
 
-function App_test() {
+function AppWithReducersTrening() {
+//--------------------------------------------------------- Data -----------
 
-    const tasks1 = [
-        {id: 1, title: "CSS", isDone: true},
-        {id: 2, title: "JS", isDone: true},
-        {id: 3, title: "React", isDone: false}
-    ]
+    let todolistId1 = v1();
+    let todolistId2 = v1();
 
-    const tasks2 = [
-        {id: 1, title: "Terminator", isDone: true},
-        {id: 2, title: "Avatar", isDone: true},
-        {id: 3, title: "Jentelmens of fortune", isDone: true}
-    ]
+    let [todolists, dispatchTodolistsReducer] = useReducer(todolistsReducerTrening,
+        [
+            {id: todolistId1, title: "What to learn", filter: "active"},
+            {id: todolistId2, title: "What to bay", filter: "completed"}
 
-    let [OldcurrentTasks, setOldCurrentTasks] = useState(tasks_test1)
-    let [filter, setFilter] = useState<FilterValuesType>("all");
+        ]
+    )
+
+    let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducerTrening,{
+        [todolistId1]: tasks_test1,
+        [todolistId2]: tasks_test2
+    })
+
+    //--------------------------------------------------------- Data -----------
 
     const removeTasks = (id: string, todolistId: string) => {
-        let tasks = tasksObj[todolistId];
-        let filteredTasks = tasks.filter(t => t.id !== id);
-        // setCurrentTasks(newTasks)
-        tasksObj[todolistId] = filteredTasks
-        setTasks({...tasksObj});
+        const action = removeTaskTreningAC(id, todolistId)
+        dispatchToTasksReducer(action);
+        // let tasks = tasksObj[todolistId];
+        // let filteredTasks = tasks.filter(t => t.id !== id);
+        // // setCurrentTasks(newTasks)
+        // tasksObj[todolistId] = filteredTasks
+        // setTasks({...tasksObj});
     }
-
-    function addTaskItem(title: string, newTaskPeriod: string,
+    function addTaskItem(title: string, newTaskPeriod: string,isDone=false,
                          newTaskUser: string, summ: number,
                          quantity: number, prise: number, unit: string, todolistId: string) {
-        let task = {
-            id: v1(),
-            title: title,
-            isDone: false,
-            period: newTaskPeriod,
-            user: newTaskUser,
-            summ: summ,
-            quantity: quantity,
-            prise: prise,
-            unit: unit
 
-        }
-
-        let tasks = tasksObj[todolistId];
-
-        let newTasks = [task, ...tasks]
-        tasksObj[todolistId] = newTasks;
-        setTasks({...tasksObj})
+        const action = addTaskTreningCustAC(
+            title, todolistId, isDone, newTaskPeriod, newTaskUser, summ,
+            quantity,prise,unit)
+        dispatchToTasksReducer(action);
+        // let task = {
+        //     id: v1(),
+        //     title: title,
+        //     isDone: false,
+        //     period: newTaskPeriod,
+        //     user: newTaskUser,
+        //     summ: summ,
+        //     quantity: quantity,
+        //     prise: prise,
+        //     unit: unit
+        // }
+        //
+        // let tasks = tasksObj[todolistId];
+        //
+        // let newTasks = [task, ...tasks]
+        // tasksObj[todolistId] = newTasks;
+        // setTasks({...tasksObj})
 
     }
-
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === taskId)
@@ -88,7 +98,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -97,7 +106,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskUnit(id: string, newUnit: string, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -106,7 +114,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskPeriod(id: string, newPeriod: string, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -115,7 +122,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskQuantity(id: string, newQuantity: number, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -125,7 +131,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskPrise(id: string, newPrise: number, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -135,7 +140,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskSumm(id: string, newSumm: number, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -144,7 +148,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeTaskUser(id: string, newUser: string, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let task = tasks.find(t => t.id === id)
@@ -153,7 +156,6 @@ function App_test() {
             setTasks({...tasksObj})
         }
     }
-
     function changeFilter(value: FilterValuesType, todolistId: string) {
         // setFilter(value);
         let todolist = todolists.find(t => t.id === todolistId)
@@ -164,18 +166,7 @@ function App_test() {
 
     }
 
-//--------------------------------------------------------- Data -----------
 
-    let todolistId1 = v1();
-    let todolistId2 = v1();
-
-    let [todolists, setTodolists] = useState<Array<TodolistType>>(
-        [
-            {id: todolistId1, title: "What to learn", filter: "active"},
-            {id: todolistId2, title: "What to bay", filter: "completed"}
-
-        ]
-    )
 
     let removeTodolist = (todolistId: string) => {
         let filteredTodolist = todolists.filter(t => t.id !== todolistId)
@@ -190,14 +181,6 @@ function App_test() {
             setTodolists([...todolists]);
         }
     }
-
-    let [tasksObj, setTasks] = useState<TasksStateType>({
-        [todolistId1]: tasks_test1,
-        [todolistId2]: tasks_test2
-    })
-
-    //--------------------------------------------------------- Data -----------
-
     function addTodolist(title: string) {
         let todolist: TodolistType = {
             id: v1(),
@@ -285,4 +268,4 @@ function App_test() {
     );
 }
 
-export default App_test;
+export default AppWithReducersTrening;
