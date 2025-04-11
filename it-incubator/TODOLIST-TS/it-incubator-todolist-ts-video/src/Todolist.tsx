@@ -35,7 +35,8 @@ export type TodolistType = {
 
 }
 
-export function Todolist(props: TodolistType) {
+export function Todolist(props: TodolistType){
+
 
 
     const onAllClickHandler = () => {

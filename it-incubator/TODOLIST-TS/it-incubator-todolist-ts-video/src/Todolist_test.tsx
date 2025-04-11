@@ -37,14 +37,14 @@ export type TaskTypeTest = {
     unit: string
 }
 
-export type TodolistType = {
+export type TodolistTypeTrening = {
     id: string,
     title: string
     tasks: Array<TaskTypeTest>
     removeTasks: (id: string, todolistId: string) => void
     changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
-    addTaskItem: (title: string, newTaskPeriod: string, newTaskUser: string,
+    addTaskItem: (title: string, isDone: boolean, newTaskPeriod: string, newTaskUser: string,
                   newTaskSumm: number, quantity: number, prise: number,
                   unit: string, todolistId: string) => void,
     changeTaskStatus: (taskId: string, isDone: boolean,
@@ -75,8 +75,7 @@ export type TodolistType = {
 
 }
 
-export function Todolist_test(props: TodolistType) {
-
+export function Todolist_test(props: TodolistTypeTrening) {
 
     const onChangeTask = (id: string) => {
         alert(`Ви намагаєтесь редагувати завдання з id : ${id}`)
@@ -103,8 +102,8 @@ export function Todolist_test(props: TodolistType) {
 
     }
 
-    const addTask = (title: string, period: string, user: string, summ: number, quantity: number, price: number, unit: string) => {
-        props.addTaskItem(title, period, user, summ, quantity, price, unit, props.id);
+    const addTask = (title: string, isDone: boolean, period: string, user: string, summ: number, quantity: number, price: number, unit: string) => {
+        props.addTaskItem(title, isDone, period, user, summ, quantity, price, unit, props.id);
     };
 
 

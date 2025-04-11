@@ -43,8 +43,8 @@ test('correct todolist should be added', ()=> {
     // const endState = todolistsReducerTrening(startState, {
     //     type: 'ADD-TODOLIST',
     //     title: newTodolistTitle})
-
-    const endState = todolistsReducerTrening(startState, addTodolistTreningAC(newTodolistTitle))
+    const newTodolistId = v1();
+    const endState = todolistsReducerTrening(startState, addTodolistTreningAC(newTodolistTitle, newTodolistId))
 
     expect(endState.length).toBe(3);
     expect(endState[2].title).toBe(newTodolistTitle);

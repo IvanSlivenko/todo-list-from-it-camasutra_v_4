@@ -3,13 +3,13 @@ import {TextField} from "@mui/material";
 
 type AddItemFormPropsType = {
     id: string,
-    addItem: (title: string, newTaskPeriod: string, newTaskUser: string,
+    addItem: (title: string, isDone: boolean, newTaskPeriod: string, newTaskUser: string,
               newTaskSumm: number, newTaskQuantity: number,
               newTaskPrise: number, newTaskUnit: string, todolistId: string) => void
 }
 
 export function AddItemForm_test(props: AddItemFormPropsType) {
-
+    let isDone = false;
     const getTodayDate = () => {
         return new Date().toISOString().split("T")[0];
     };
@@ -154,7 +154,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
             && newTaskQuantity !== 0
             && newTaskPrise !== 0
             && newTaskSumm !== 0) {
-            props.addItem(title.trim(), newTaskPeriod, newTaskUser,
+            props.addItem(title.trim(), isDone, newTaskPeriod, newTaskUser,
                 newTaskSumm, newTaskQuantity, newTaskPrise, newTaskUnit, props.id);
 
             setTitle("");

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TaskType, Todolist} from "./Todolist";
 import {Todolist_test, TaskTypeTest} from "./Todolist_test";
 import {AddItemForm} from "./AddItemForm";
 import {AddItemForm_test} from "./AddItemForm_test";
@@ -27,7 +26,7 @@ export type TodolistType = {
     filter: FilterValuesType
 }
 
-export type TasksStateType = {
+export type TasksStateTypeTrening = {
     [key: string]: Array<TaskTypeTest>
 }
 
@@ -45,7 +44,7 @@ function AppTrening() {
         ]
     )
 
-    let [tasksObj, setTasks] = useState<TasksStateType>({
+    let [tasksObj, setTasks] = useState<TasksStateTypeTrening>({
         [todolistId1]: tasks_test1,
         [todolistId2]: tasks_test2
     })
@@ -59,7 +58,7 @@ function AppTrening() {
         setTasks({...tasksObj});
     }
 
-    function addTaskItem(title: string, newTaskPeriod: string,
+    function addTaskItem(title: string, isDone: boolean, newTaskPeriod: string,
                          newTaskUser: string, summ: number,
                          quantity: number, prise: number, unit: string, todolistId: string) {
         let task = {
