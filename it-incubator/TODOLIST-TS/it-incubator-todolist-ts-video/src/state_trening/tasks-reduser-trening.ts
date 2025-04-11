@@ -112,6 +112,7 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening, action: Action
         case  'ADD-TASK-TRENING': {
             const stateCopy = {...state};
             const tasks = stateCopy[action.todolistId]
+            if(!tasks) return state;
             const newTask = {
                 id: v1(),
                 title: action.title,
@@ -174,6 +175,7 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening, action: Action
             let task = tasks.find(t => t.id === action.taskId)
             if (task) {
                 task.quantity = action.quantity;
+                task.summ=task.quantity*task.prise
 
             }
             return stateCopy
@@ -184,6 +186,7 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening, action: Action
             let task = tasks.find(t => t.id === action.taskId)
             if (task) {
                 task.prise = action.price;
+                task.summ=task.quantity*task.prise
 
             }
             return stateCopy

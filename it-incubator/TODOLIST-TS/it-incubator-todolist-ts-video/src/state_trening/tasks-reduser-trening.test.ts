@@ -52,7 +52,7 @@ test('correct task should be add from correct array', () => {
     };
 
     const newTodolistId = v1();
-    const action = addTaskTreningCustAC("juce",false,"07.09.2006","user",1,1,1,"шт",newTodolistId );
+    const action = addTaskTreningCustAC("juce",false,"07.09.2006","user",1,1,1,"шт", "todolistId2" );
 
     const endState = tasksReducerTrening(startState, action);
 
