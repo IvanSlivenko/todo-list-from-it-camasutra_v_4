@@ -1,4 +1,4 @@
-import {FilterValuesType, TodolistType} from "../App-trening";
+import {FilterValuesType, TodolistTypeTrening} from "../App-trening";
 import {v1} from "uuid";
 
 
@@ -33,7 +33,7 @@ export type ActionsType = RemoveTodolistActionType
     | ChangeTodolistFilterActionType
 
 
-export const todolistsReducerTrening = (state: Array<TodolistType>, action: ActionsType): Array<TodolistType> => {
+export const todolistsReducerTrening = (state: Array<TodolistTypeTrening>, action: ActionsType): Array<TodolistTypeTrening> => {
 
     switch (action.type) {
         case "REMOVE-TODOLIST":

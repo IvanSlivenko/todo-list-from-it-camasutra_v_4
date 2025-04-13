@@ -17,7 +17,9 @@
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-scripts": "5.0.1",
+    "redux": "^5.0.1",
     "typescript": "^4.4.2",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.0"
@@ -45,5 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.34",
+    "@types/redux": "^3.6.0"
   }
 }

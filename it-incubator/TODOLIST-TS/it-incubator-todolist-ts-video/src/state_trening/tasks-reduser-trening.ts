@@ -1,4 +1,4 @@
-import {FilterValuesType, TasksStateTypeTrening, TodolistType} from "../App-trening";
+import {FilterValuesType, TasksStateTypeTrening, TodolistTypeTrening} from "../App-trening";
 
 import {v1} from 'uuid'
 import {AddTodolistActionType, RemoveTodolistActionType} from "./todolists-reduser-trening"

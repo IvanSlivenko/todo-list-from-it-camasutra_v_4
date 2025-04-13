@@ -8,7 +8,9 @@ import {Border} from "./Border";
 
 import {Counter} from "./Counter";
 import AppWithReducers from "./AppWithReducers";
+import AppWithRedux from "./AppWithRedux";
 import AppWithReducersTrening from "./App-treningWithReducers";
+import AppWithReduxTrening from "./AppWithReduxTrening";
 
 
 const root = ReactDOM.createRoot(
@@ -18,11 +20,13 @@ root.render(
     // <React.StrictMode>
     <>
         {/*<App/>*/}
-        <AppWithReducers/>
+        {/*<AppWithReducers/>*/}
+        <AppWithRedux/>
 
         {/*<Border/>*/}
         {/*<AppTrening/>*/}
-        <AppWithReducersTrening/>
+        {/*<AppWithReducersTrening/>*/}
+        <AppWithReduxTrening/>
 
         <Counter/>
     </>

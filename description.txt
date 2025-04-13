@@ -109,5 +109,28 @@ reducer = state + action => newState
 let = [state, dispatch]=useReducer(reducer, startState)
 
 
+yarn add redux react-redux
+yarn add -D @types/redux @types/react-redux
+
+
+redux
+store => state (one) : {
+    key: [{}]
+    key: {}
+    key: {}
+}
+R1
+R2
+R3
+--------------------------------
+
+redux:
+1.store(state)
+2.redusers
+
+--------------------------------
+
+alt+enter => suprere ts ignore
+
 =====================================================================
-00 : 29 : 51
+00 : 45 : 58

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
+import {TaskType, Todolist} from "./Todolist";
 import {Todolist_test, TaskTypeTest} from "./Todolist_test";
 import {AddItemForm} from "./AddItemForm";
 import {AddItemForm_test} from "./AddItemForm_test";
@@ -17,6 +18,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
+import {
+    addTodolistTreningAC,
+    changeTodolistFilterTreningAC, changeTodolistTitleTreningAC,
+    removeTodolistTreningAC,
+    todolistsReducerTrening
+} from "./state_trening/todolists-reduser-trening";
+import {
+    addTaskTreningCustAC, removeTaskTreningAC, tasksReducerTrening,
+    changeTaskStatusTreningsAC, changeTaskTitleTreningAC, changeTaskUnitTreningAC,
+    changeTaskPeriodTreningAC, changeTaskQuantityTreningAC, changeTaskPriceTreningAC,
+    changeTaskSummTreningAC, changeTaskUserTreningAC
+
+} from "./state_trening/tasks-reduser-trening";
+
 
 export type FilterValuesType = "all" | "completed" | "active"
 
@@ -26,25 +41,25 @@ export type TodolistTypeTrening = {
     filter: FilterValuesType
 }
 
+
 export type TasksStateTypeTrening = {
     [key: string]: Array<TaskTypeTest>
 }
 
-function AppTrening() {
+function AppWithReduxTrening() {
 //--------------------------------------------------------- Data -----------
 
     let todolistId1 = v1();
     let todolistId2 = v1();
 
-    let [todolists, setTodolists] = useState<Array<TodolistTypeTrening>>(
+    let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducerTrening,
         [
             {id: todolistId1, title: "What to learn", filter: "active"},
             {id: todolistId2, title: "What to bay", filter: "completed"}
-
         ]
     )
 
-    let [tasksObj, setTasks] = useState<TasksStateTypeTrening>({
+    let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducerTrening, {
         [todolistId1]: tasks_test1,
         [todolistId2]: tasks_test2
     })
@@ -52,148 +67,95 @@ function AppTrening() {
     //--------------------------------------------------------- Data -----------
 
     const removeTasks = (id: string, todolistId: string) => {
-        let tasks = tasksObj[todolistId];
-        let filteredTasks = tasks.filter(t => t.id !== id);
-        tasksObj[todolistId] = filteredTasks
-        setTasks({...tasksObj});
+        const action = removeTaskTreningAC(id, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function addTaskItem(title: string, isDone: boolean, newTaskPeriod: string,
                          newTaskUser: string, summ: number,
                          quantity: number, prise: number, unit: string, todolistId: string) {
-        let task = {
-            id: v1(),
-            title: title,
-            isDone: false,
-            period: newTaskPeriod,
-            user: newTaskUser,
-            summ: summ,
-            quantity: quantity,
-            prise: prise,
-            unit: unit
 
-        }
+        const action = addTaskTreningCustAC(
+            title, isDone, newTaskPeriod, newTaskUser, summ,
+            quantity, prise, unit, todolistId)
+        dispatchToTasksReducer(action);
 
-        let tasks = tasksObj[todolistId];
-
-        let newTasks = [task, ...tasks]
-        tasksObj[todolistId] = newTasks;
-        setTasks({...tasksObj})
 
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === taskId)
-        if (task) {
-            task.isDone = isDone;
-            setTasks({...tasksObj})
-        }
+
+        const action = changeTaskStatusTreningsAC(taskId, isDone, todolistId);
+        dispatchToTasksReducer(action);
+
+
     }
 
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.title = newTitle;
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskTitleTreningAC(id, newTitle, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function changeTaskUnit(id: string, newUnit: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.unit = newUnit;
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskUnitTreningAC(id, newUnit, todolistId);
+        dispatchToTasksReducer(action);
     }
 
     function changeTaskPeriod(id: string, newPeriod: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.period = newPeriod;
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskPeriodTreningAC(id, newPeriod, todolistId);
+        dispatchToTasksReducer(action);
+
     }
 
     function changeTaskQuantity(id: string, newQuantity: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.quantity = newQuantity;
-            task.summ = task.quantity * task.prise
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskQuantityTreningAC(id, newQuantity, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function changeTaskPrise(id: string, newPrise: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.prise = newPrise;
-            task.summ = task.quantity * task.prise
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskPriceTreningAC(id, newPrise, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function changeTaskSumm(id: string, newSumm: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.summ = newSumm;
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskSummTreningAC(id, newSumm, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function changeTaskUser(id: string, newUser: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.user = newUser;
-            setTasks({...tasksObj})
-        }
+        const action = changeTaskUserTreningAC(id, newUser, todolistId)
+        dispatchToTasksReducer(action);
+
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
-        // setFilter(value);
-        let todolist = todolists.find(t => t.id === todolistId)
-        if (todolist) {
-            todolist.filter = value
-            setTodolists([...todolists])
-        }
+        dispatchToTodolistsReducer(changeTodolistFilterTreningAC(value, todolistId));
 
     }
-
 
 
     let removeTodolist = (todolistId: string) => {
-        let filteredTodolist = todolists.filter(t => t.id !== todolistId)
-        setTodolists(filteredTodolist)
-        delete tasksObj[todolistId]
-        setTasks({...tasksObj});
+        dispatchToTodolistsReducer(removeTodolistTreningAC(todolistId));
+        dispatchToTasksReducer(removeTodolistTreningAC(todolistId));
+
     }
     let changeTodolistTitle = (id: string, newTitle: string) => {
-        const todolist = todolists.find(tl => tl.id === id)
-        if (todolist) {
-            todolist.title = newTitle
-            setTodolists([...todolists]);
-        }
+        dispatchToTodolistsReducer(changeTodolistTitleTreningAC(id, newTitle));
+
     }
 
     function addTodolist(title: string) {
-        let todolist: TodolistTypeTrening = {
-            id: v1(),
-            filter: 'all',
-            title: title
-        }
-        setTodolists([todolist, ...todolists])
-        setTasks({
-            ...tasksObj,
-            [todolist.id]: []
-        })
+        const newTodolistId = v1();
+        dispatchToTodolistsReducer(addTodolistTreningAC(title, newTodolistId));
+        dispatchToTasksReducer(addTodolistTreningAC(title, newTodolistId));
+
     }
+
 
     return (
         <div className="App_custome">
@@ -218,7 +180,7 @@ function AppTrening() {
             </AppBar>
 
             <Container maxWidth="xl">
-                <Grid container style={{padding:'10px'}}>
+                <Grid container style={{padding: '10px'}}>
                     <AddItemForm addItem={addTodolist}/>
                 </Grid>
                 <Grid container spacing={1}>
@@ -266,6 +228,6 @@ function AppTrening() {
             </Container>
         </div>
     );
-}
+};
 
-export default AppTrening;
+export default AppWithReduxTrening;
