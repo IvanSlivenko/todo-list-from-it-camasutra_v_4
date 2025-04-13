@@ -1,7 +1,8 @@
 import {FilterValuesType, TasksStateTypeTrening, TodolistTypeTrening} from "../App-trening";
 
 import {v1} from 'uuid'
-import {AddTodolistActionType, RemoveTodolistActionType} from "./todolists-reduser-trening"
+import {AddTodolistActionType, RemoveTodolistActionType, todolistId1Trening, todolistId2Trening } from "./todolists-reduser-trening"
+import {tasks_test1, tasks_test2} from "../tasks_test";
 
 
 
@@ -98,8 +99,12 @@ export type ActionsTypeTrening = RemoveTaskActionType
     | ChangeTaskSummActionType
     | ChangeTaskUserActionType
 
+const initialStateTrening: TasksStateTypeTrening = {
+    [todolistId1Trening]: tasks_test1,
+    [todolistId2Trening]: tasks_test2
+}
 
-export const tasksReducerTrening = (state: TasksStateTypeTrening, action: ActionsTypeTrening): TasksStateTypeTrening => {
+export const tasksReducerTrening = (state: TasksStateTypeTrening = initialStateTrening, action: ActionsTypeTrening): TasksStateTypeTrening => {
 
     switch (action.type) {
         case  'REMOVE-TASK': {
@@ -227,7 +232,8 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening, action: Action
         }
 
         default:
-            throw new Error("I don't understand this action type")
+            // throw new Error("I don't understand this action type")
+            return state;
     }
 }
 

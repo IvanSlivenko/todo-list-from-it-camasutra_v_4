@@ -11,6 +11,9 @@ import AppWithReducers from "./AppWithReducers";
 import AppWithRedux from "./AppWithRedux";
 import AppWithReducersTrening from "./App-treningWithReducers";
 import AppWithReduxTrening from "./AppWithReduxTrening";
+import {Provider} from "react-redux";
+import {store} from "./state/store";
+import {storeTrening} from "./state_trening/storeTrening";
 
 
 const root = ReactDOM.createRoot(
@@ -21,12 +24,18 @@ root.render(
     <>
         {/*<App/>*/}
         {/*<AppWithReducers/>*/}
-        <AppWithRedux/>
+        <Provider store={store}>
+            <AppWithRedux/>
+        </Provider>
+
 
         {/*<Border/>*/}
         {/*<AppTrening/>*/}
         {/*<AppWithReducersTrening/>*/}
-        <AppWithReduxTrening/>
+        <Provider store={storeTrening}>
+            <AppWithReduxTrening/>
+        </Provider>
+
 
         <Counter/>
     </>

@@ -43,12 +43,19 @@ function AppWithRedux() {
     let todolistId1 = v1();
     let todolistId2 = v1();
 
+
+
     let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer,
+
         [
             {id: todolistId1, title: "What to learn", filter: "all"},
             {id: todolistId2, title: "What to bay", filter: "all"}
         ]
     )
+
+
+
+
 
     let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducer, {
         [todolistId1]: [
@@ -135,7 +142,7 @@ function AppWithRedux() {
 
                 <Grid container spacing={2}>
                     {
-                        todolists.map((tl) => {
+                        todolists.map((tl: TodolistType) => {
                             let tasksForTodolist = tasksObj[tl.id];
                             // ---------------------------------------------- filtered script home
                             if (tl.filter === "active") {
@@ -146,6 +153,7 @@ function AppWithRedux() {
                             }
 
                             return <Grid item
+                                         key={tl.id} // Додаємо унікальний ключ
                                          style={{marginBottom: '10px'}}
                             >
                                 <Paper
@@ -153,7 +161,7 @@ function AppWithRedux() {
                                     style={{padding: '10px'}}
                                 >
                                     <Todolist
-                                        key={tl.id} // Додаємо унікальний ключ
+                                        // key={tl.id} // Додаємо унікальний ключ
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={tasksForTodolist}

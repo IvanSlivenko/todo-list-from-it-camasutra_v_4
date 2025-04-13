@@ -31,6 +31,7 @@ import {
     changeTaskSummTreningAC, changeTaskUserTreningAC
 
 } from "./state_trening/tasks-reduser-trening";
+import {TodolistType} from "./AppWithRedux";
 
 
 export type FilterValuesType = "all" | "completed" | "active"
@@ -52,12 +53,16 @@ function AppWithReduxTrening() {
     let todolistId1 = v1();
     let todolistId2 = v1();
 
+
     let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducerTrening,
+
         [
             {id: todolistId1, title: "What to learn", filter: "active"},
             {id: todolistId2, title: "What to bay", filter: "completed"}
         ]
     )
+
+
 
     let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducerTrening, {
         [todolistId1]: tasks_test1,
@@ -185,7 +190,7 @@ function AppWithReduxTrening() {
                 </Grid>
                 <Grid container spacing={1}>
                     {
-                        todolists.map(tl => {
+                        todolists && todolists.map((tl: TodolistTypeTrening) => {
                             let taskForTodolist = tasksObj[tl.id];
                             // ---------------------------------------------- filtered script home
                             if (tl.filter === "active") {
@@ -194,10 +199,13 @@ function AppWithReduxTrening() {
                             if (tl.filter === "completed") {
                                 taskForTodolist = taskForTodolist.filter(t => t.isDone === true)
                             }
-                            return <Grid item>
+                            return <Grid item
+                                         key={tl.id}
+
+                            >
                                 <Paper elevation={3}>
                                     <Todolist_test
-                                        key={tl.id}
+                                        // key={tl.id}
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={taskForTodolist}
