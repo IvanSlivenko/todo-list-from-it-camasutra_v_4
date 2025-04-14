@@ -132,5 +132,9 @@ redux:
 
 alt+enter => suprere ts ignore
 
+store.getState()
+
+storeTrening.getState()
+
 =====================================================================
-01 : 03 : 34
+01 : 12 : 07

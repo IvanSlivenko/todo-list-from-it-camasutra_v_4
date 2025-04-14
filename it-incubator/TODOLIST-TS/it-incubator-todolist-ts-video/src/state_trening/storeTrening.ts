@@ -16,5 +16,5 @@ export type AppRooteStateTrening = ReturnType<typeof rootReducerTrening>
 export const storeTrening = createStore(rootReducerTrening)
 
 // @ts-ignore
-window.store = storeTrening;
+window.storeTrening = storeTrening;
 
