@@ -10,7 +10,7 @@ const rootReducerTrening = combineReducers({
 
 
 
-type AppRooteStateTrening = ReturnType<typeof rootReducerTrening>
+export type AppRooteStateTrening = ReturnType<typeof rootReducerTrening>
 
 
 export const storeTrening = createStore(rootReducerTrening)

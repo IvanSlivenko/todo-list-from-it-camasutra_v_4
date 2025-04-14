@@ -31,7 +31,8 @@ import {
     changeTaskSummTreningAC, changeTaskUserTreningAC
 
 } from "./state_trening/tasks-reduser-trening";
-import {TodolistType} from "./AppWithRedux";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRooteStateTrening} from "./state_trening/storeTrening";
 
 
 export type FilterValuesType = "all" | "completed" | "active"
@@ -50,30 +51,28 @@ export type TasksStateTypeTrening = {
 function AppWithReduxTrening() {
 //--------------------------------------------------------- Data -----------
 
-    let todolistId1 = v1();
-    let todolistId2 = v1();
+    // let todolistId1 = v1();
+    // let todolistId2 = v1();
 
+    const dispatchTrening = useDispatch()
+    const todolistsTrening = useSelector<AppRooteStateTrening, Array<TodolistTypeTrening>>(state=>state.todolists)
+    const tasksObjTrening = useSelector<AppRooteStateTrening, TasksStateTypeTrening>(state=>state.tasks)
 
-    let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducerTrening,
-
-        [
-            {id: todolistId1, title: "What to learn", filter: "active"},
-            {id: todolistId2, title: "What to bay", filter: "completed"}
-        ]
-    )
-
-
-
-    let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducerTrening, {
-        [todolistId1]: tasks_test1,
-        [todolistId2]: tasks_test2
-    })
-
-    //--------------------------------------------------------- Data -----------
+    // let [todolists] = useReducer(todolistsReducerTrening,
+    //
+    //     [
+    //         {id: todolistId1, title: "What to learn", filter: "active"},
+    //         {id: todolistId2, title: "What to bay", filter: "completed"}
+    //     ]
+    // )
+    // let [tasksObj] = useReducer(tasksReducerTrening, {
+    //     [todolistId1]: tasks_test1,
+    //     [todolistId2]: tasks_test2
+    // })
 
     const removeTasks = (id: string, todolistId: string) => {
         const action = removeTaskTreningAC(id, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
@@ -84,7 +83,7 @@ function AppWithReduxTrening() {
         const action = addTaskTreningCustAC(
             title, isDone, newTaskPeriod, newTaskUser, summ,
             quantity, prise, unit, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
 
     }
@@ -92,72 +91,72 @@ function AppWithReduxTrening() {
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
 
         const action = changeTaskStatusTreningsAC(taskId, isDone, todolistId);
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
 
     }
 
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
         const action = changeTaskTitleTreningAC(id, newTitle, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeTaskUnit(id: string, newUnit: string, todolistId: string) {
         const action = changeTaskUnitTreningAC(id, newUnit, todolistId);
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
     }
 
     function changeTaskPeriod(id: string, newPeriod: string, todolistId: string) {
         const action = changeTaskPeriodTreningAC(id, newPeriod, todolistId);
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeTaskQuantity(id: string, newQuantity: number, todolistId: string) {
         const action = changeTaskQuantityTreningAC(id, newQuantity, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeTaskPrise(id: string, newPrise: number, todolistId: string) {
         const action = changeTaskPriceTreningAC(id, newPrise, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeTaskSumm(id: string, newSumm: number, todolistId: string) {
         const action = changeTaskSummTreningAC(id, newSumm, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeTaskUser(id: string, newUser: string, todolistId: string) {
         const action = changeTaskUserTreningAC(id, newUser, todolistId)
-        dispatchToTasksReducer(action);
+        dispatchTrening(action);
 
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
-        dispatchToTodolistsReducer(changeTodolistFilterTreningAC(value, todolistId));
+        dispatchTrening(changeTodolistFilterTreningAC(value, todolistId));
 
     }
 
 
     let removeTodolist = (todolistId: string) => {
-        dispatchToTodolistsReducer(removeTodolistTreningAC(todolistId));
-        dispatchToTasksReducer(removeTodolistTreningAC(todolistId));
+        dispatchTrening(removeTodolistTreningAC(todolistId));
+
 
     }
     let changeTodolistTitle = (id: string, newTitle: string) => {
-        dispatchToTodolistsReducer(changeTodolistTitleTreningAC(id, newTitle));
+        dispatchTrening(changeTodolistTitleTreningAC(id, newTitle));
 
     }
 
     function addTodolist(title: string) {
         const newTodolistId = v1();
-        dispatchToTodolistsReducer(addTodolistTreningAC(title, newTodolistId));
-        dispatchToTasksReducer(addTodolistTreningAC(title, newTodolistId));
+        dispatchTrening(addTodolistTreningAC(title, newTodolistId));
+
 
     }
 
@@ -190,8 +189,8 @@ function AppWithReduxTrening() {
                 </Grid>
                 <Grid container spacing={1}>
                     {
-                        todolists && todolists.map((tl: TodolistTypeTrening) => {
-                            let taskForTodolist = tasksObj[tl.id];
+                        todolistsTrening?.map((tl: TodolistTypeTrening) => {
+                            let taskForTodolist = tasksObjTrening[tl.id];
                             // ---------------------------------------------- filtered script home
                             if (tl.filter === "active") {
                                 taskForTodolist = taskForTodolist.filter(t => t.isDone === false)

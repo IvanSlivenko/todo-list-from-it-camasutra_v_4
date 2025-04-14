@@ -184,7 +184,7 @@ function AppWithReducersTrening() {
                 </Grid>
                 <Grid container spacing={1}>
                     {
-                        todolists.map(tl => {
+                        todolists?.map(tl => {
                             let taskForTodolist = tasksObj[tl.id];
                             // ---------------------------------------------- filtered script home
                             if (tl.filter === "active") {

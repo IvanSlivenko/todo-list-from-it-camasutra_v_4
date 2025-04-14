@@ -135,7 +135,7 @@ function AppWithReducers() {
 
                 <Grid container spacing={2}>
                     {
-                        todolists.map((tl) => {
+                        todolists?.map((tl) => {
                             let tasksForTodolist = tasksObj[tl.id];
                             // ---------------------------------------------- filtered script home
                             if (tl.filter === "active") {
