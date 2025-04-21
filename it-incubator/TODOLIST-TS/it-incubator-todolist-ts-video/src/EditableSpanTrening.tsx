@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState, useEffect} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState, useEffect, useCallback} from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
@@ -13,7 +13,8 @@ type EditableSpanPropsType = {
     onChange: (value: string) => void
 }
 
-export function EditableSpan_test(props: EditableSpanPropsType) {
+export const EditableSpanTrening = React.memo((props: EditableSpanPropsType)=> {
+    console.log('EditableSpanTrening is called')
     let [editMode, setEditMode] = useState(false)
     let [title, setTitle] = useState(props.title)
     const activateEditMode = () => {
@@ -30,15 +31,8 @@ export function EditableSpan_test(props: EditableSpanPropsType) {
         setTitle(e.currentTarget.value)
     }
 
-    return editMode ?
+    return editMode ? (
         <span>
-            {/*<input*/}
-            {/*    value={title}*/}
-            {/*    onBlur={activateVievMode}*/}
-            {/*    autoFocus={true}*/}
-            {/*    onChange={onChangeTitleHandler}*/}
-
-            {/*/>*/}
             <TextField
                 label={'Товар'}
                 value={title}
@@ -46,30 +40,18 @@ export function EditableSpan_test(props: EditableSpanPropsType) {
                 autoFocus={true}
                 onChange={onChangeTitleHandler}
             />
-            <IconButton
-                // aria-label="delete"
-                onClick={activateVievMode}
-            >
+            <IconButton onClick={activateVievMode}>
                 <CheckCircleOutlineIcon color="disabled"/>
             </IconButton>
-            {/*<button onClick={activateVievMode}>=</button>*/}
         </span>
-
-        :
+    ) : (
         <span className="span-title">{props.title}
-            <IconButton
-                // aria-label="delete"
-                size={"small"}
-                onClick={activateEditMode}
-            >
-                {/*<SettingsIcon color="disabled"/>*/}
+            <IconButton size={"small"} onClick={activateEditMode}>
                 <EditIcon color="disabled"/>
-
             </IconButton>
-            {/*<button onClick={activateEditMode}>...</button>*/}
-
         </span>
-}
+    );
+});
 
 type EditableSpanUnitPropsType = {
     unit: string
@@ -77,7 +59,7 @@ type EditableSpanUnitPropsType = {
     onChange: (value: string) => void
 }
 
-export function EditableSpanUnit(props: EditableSpanUnitPropsType) {
+export const EditableSpanUnit = (props: EditableSpanUnitPropsType)=> {
     let [editModeUnit, setEditModeUnit] = useState(false)
     let [unit, setUnit] = useState(props.unit)
     const activateEditModeUnit = () => {
@@ -133,7 +115,7 @@ type EditableSpanPeriodPropsType = {
     onChange: (value: string) => void
 }
 
-export function EditableSpanPeriod(props: EditableSpanPeriodPropsType) {
+export const EditableSpanPeriod = (props: EditableSpanPeriodPropsType)=> {
     let [editModePeriod, setEditModePeriod] = useState(false)
     let [period, setPeriod] = useState(props.period)
     const activateEditModePeriod = () => {
@@ -193,7 +175,7 @@ type EditableSpanQuantityPropsType = {
     onChange: (value: number) => void
 }
 
-export function EditableSpanQuantity(props: EditableSpanQuantityPropsType) {
+export const EditableSpanQuantity= (props: EditableSpanQuantityPropsType)=> {
     let [editModeQuantity, setEditModeQuantity] = useState(false)
     let [quantity, setQuantity] = useState(props.quantity)
     const activateEditModeQuantity = () => {
@@ -246,7 +228,7 @@ type EditableSpanPrisePropsType = {
     onChange: (value: number) => void
 }
 
-export function EditableSpanPrise(props: EditableSpanPrisePropsType) {
+export const EditableSpanPrise =  (props: EditableSpanPrisePropsType) => {
     let [editModePrise, setEditModePrise] = useState(false)
     let [prise, setPrise] = useState(props.prise)
     const activateEditModePrise = () => {
@@ -286,7 +268,7 @@ type EditableSpanSummPropsType = {
     onChange: (value: number) => void
 }
 
-export function EditableSpanSumm(props: EditableSpanSummPropsType) {
+export const EditableSpanSumm =  (props: EditableSpanSummPropsType) => {
     let [editModeSumm, setEditModeSumm] = useState(false)
     let [summ, setSumm] = useState(props.summ || 0)
     const activateEditModeSumm = () => {
@@ -327,7 +309,7 @@ type EditableSpanUserPropsType = {
     onChange: (value: string) => void
 }
 
-export function EditableSpanUser(props: EditableSpanUserPropsType) {
+export const EditableSpanUser =  (props: EditableSpanUserPropsType) => {
     let [editModeUser, setEditModeUser] = useState(false)
     let [user, setUser] = useState(props.user)
     const activateEditModeUser = () => {
@@ -390,8 +372,7 @@ type EditableSpanCounterPropsType = {
     onChangeSumm: (value: number) => void
 }
 
-
-export function EditableSpanCounter(props: EditableSpanCounterPropsType) {
+export const EditableSpanCounter = (props: EditableSpanCounterPropsType) => {
     let [editModeSumm, setEditModeSumm] = useState(false);
     let [summ, setSumm] = useState(props.summ || 0);
 

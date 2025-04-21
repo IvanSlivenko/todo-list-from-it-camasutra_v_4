@@ -6,12 +6,12 @@ import AddIcon from '@mui/icons-material/Add';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
-
 type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export function AddItemForm(props: AddItemFormPropsType) {
+export const  AddItemForm = React.memo( (props: AddItemFormPropsType)=> {
+    console.log("AddItemForm is called")
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
 
@@ -20,7 +20,10 @@ export function AddItemForm(props: AddItemFormPropsType) {
     }
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error !== null) {
+            setError(null);
+        }
+
         if (title.trim() !== "" && e.ctrlKey && e.key === "Enter") {
             addTask();
         }
@@ -37,12 +40,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
     }
 
     return <div>
-        {/*<input*/}
-        {/*    className={error ? "error" : ""}*/}
-        {/*    value={title}*/}
-        {/*    onChange={onNewTitleChangeHandler}*/}
-        {/*    onKeyDown={onKeyPressHandler}*/}
-        {/*/>*/}
+
         <TextField
             size={"small"}
             variant="outlined"
@@ -55,24 +53,11 @@ export function AddItemForm(props: AddItemFormPropsType) {
             error={!!error}
             helperText={error}
         />
-        {/*{*/}
-        {/*    error*/}
-        {/*        ?*/}
-        {/*        <div className={error ? "error-message" : ""}> Field is requared </div>*/}
-        {/*        :*/}
-        {/*        null*/}
 
-        {/*}*/}
-        {/*<button onClick={addTask}>+</button>*/}
-        {/*<Button*/}
-        {/*    onClick={addTask}*/}
-        {/*    variant="contained"*/}
-        {/*    color="primary"*/}
-        {/*>+</Button>*/}
         <IconButton
             onClick={addTask}
             color="inherit">
             <AddCircleOutlineIcon/>
         </IconButton>
     </div>
-}
+})

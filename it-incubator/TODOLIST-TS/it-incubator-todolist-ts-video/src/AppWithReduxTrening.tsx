@@ -1,9 +1,9 @@
-import React, {useReducer, useState} from 'react';
+import React, {useCallback, useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
-import {Todolist_test, TaskTypeTest} from "./Todolist_test";
+import {TodolistTrening, TaskTypeTrening} from "./TodolistTrening";
 import {AddItemForm} from "./AddItemForm";
-import {AddItemForm_test} from "./AddItemForm_test";
+import {AddItemFormTrening} from "./AddItemFormTrening";
 
 import {tasks_test1, tasks_test2} from "./tasks_test";
 import {v1} from "uuid";
@@ -45,7 +45,7 @@ export type TodolistTypeTrening = {
 
 
 export type TasksStateTypeTrening = {
-    [key: string]: Array<TaskTypeTest>
+    [key: string]: Array<TaskTypeTrening>
 }
 
 function AppWithReduxTrening() {
@@ -70,96 +70,70 @@ function AppWithReduxTrening() {
     //     [todolistId2]: tasks_test2
     // })
 
-    const removeTasks = (id: string, todolistId: string) => {
+    const removeTasks = useCallback( (id: string, todolistId: string) => {
         const action = removeTaskTreningAC(id, todolistId)
         dispatchTrening(action);
-
-    }
-
-    function addTaskItem(title: string, isDone: boolean, newTaskPeriod: string,
+    },[dispatchTrening]);
+    const addTaskTrening = useCallback( (title: string, isDone: boolean, newTaskPeriod: string,
                          newTaskUser: string, summ: number,
-                         quantity: number, prise: number, unit: string, todolistId: string) {
+                         quantity: number, prise: number, unit: string, todolistId: string)=> {
 
         const action = addTaskTreningCustAC(
             title, isDone, newTaskPeriod, newTaskUser, summ,
             quantity, prise, unit, todolistId)
         dispatchTrening(action);
+    },[]);
 
-
-    }
-
-    function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-
+    const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
         const action = changeTaskStatusTreningsAC(taskId, isDone, todolistId);
         dispatchTrening(action);
-
-
-    }
-
-    function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
+    },[dispatchTrening]);
+    const changeTaskTitle = useCallback((id: string, newTitle: string, todolistId: string) => {
         const action = changeTaskTitleTreningAC(id, newTitle, todolistId)
         dispatchTrening(action);
-
-    }
-
-    function changeTaskUnit(id: string, newUnit: string, todolistId: string) {
+    },[dispatchTrening]);
+    const changeTaskUnit = useCallback((id: string, newUnit: string, todolistId: string)=> {
         const action = changeTaskUnitTreningAC(id, newUnit, todolistId);
         dispatchTrening(action);
-    }
+    },[dispatchTrening]);
 
-    function changeTaskPeriod(id: string, newPeriod: string, todolistId: string) {
+    const changeTaskPeriod = useCallback((id: string, newPeriod: string, todolistId: string)=> {
         const action = changeTaskPeriodTreningAC(id, newPeriod, todolistId);
         dispatchTrening(action);
-
-    }
-
-    function changeTaskQuantity(id: string, newQuantity: number, todolistId: string) {
+    },[dispatchTrening]);
+    const changeTaskQuantity= useCallback( (id: string, newQuantity: number, todolistId: string) => {
         const action = changeTaskQuantityTreningAC(id, newQuantity, todolistId)
         dispatchTrening(action);
+    },[dispatchTrening]);
 
-    }
-
-    function changeTaskPrise(id: string, newPrise: number, todolistId: string) {
+    const changeTaskPrise = useCallback((id: string, newPrise: number, todolistId: string)=> {
         const action = changeTaskPriceTreningAC(id, newPrise, todolistId)
         dispatchTrening(action);
-
-    }
-
-    function changeTaskSumm(id: string, newSumm: number, todolistId: string) {
+    },[dispatchTrening]);
+    const changeTaskSumm = useCallback((id: string, newSumm: number, todolistId: string) => {
         const action = changeTaskSummTreningAC(id, newSumm, todolistId)
         dispatchTrening(action);
-
-    }
-
-    function changeTaskUser(id: string, newUser: string, todolistId: string) {
+    },[dispatchTrening]);
+    const changeTaskUser= useCallback((id: string, newUser: string, todolistId: string) => {
         const action = changeTaskUserTreningAC(id, newUser, todolistId)
         dispatchTrening(action);
 
-    }
-
-    function changeFilter(value: FilterValuesType, todolistId: string) {
+    },[dispatchTrening]);
+    const changeFilter = useCallback((value: FilterValuesType, todolistId: string) => {
         dispatchTrening(changeTodolistFilterTreningAC(value, todolistId));
-
-    }
-
-
-    let removeTodolist = (todolistId: string) => {
+    },[dispatchTrening]);
+    let removeTodolist = useCallback( (todolistId: string) => {
         dispatchTrening(removeTodolistTreningAC(todolistId));
-
-
-    }
-    let changeTodolistTitle = (id: string, newTitle: string) => {
+    },[dispatchTrening]);
+    let changeTodolistTitle = useCallback( (id: string, newTitle: string) => {
         dispatchTrening(changeTodolistTitleTreningAC(id, newTitle));
-
-    }
-
-    function addTodolist(title: string) {
+    },[dispatchTrening]);
+    const addTodolist = useCallback((title: string)=> {
         const newTodolistId = v1();
         dispatchTrening(addTodolistTreningAC(title, newTodolistId));
 
 
-    }
-
+    },[dispatchTrening]);
 
     return (
         <div className="App_custome">
@@ -191,28 +165,21 @@ function AppWithReduxTrening() {
                     {
                         todolistsTrening?.map((tl: TodolistTypeTrening) => {
                             let taskForTodolist = tasksObjTrening[tl.id];
-                            // ---------------------------------------------- filtered script home
-                            if (tl.filter === "active") {
-                                taskForTodolist = taskForTodolist.filter(t => t.isDone === false)
-                            }
-                            if (tl.filter === "completed") {
-                                taskForTodolist = taskForTodolist.filter(t => t.isDone === true)
-                            }
+
                             return <Grid item
                                          key={tl.id}
 
                             >
                                 <Paper elevation={3}>
-                                    <Todolist_test
+                                    <TodolistTrening
                                         // key={tl.id}
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={taskForTodolist}
                                         removeTasks={removeTasks}
                                         changeFilter={changeFilter}
-                                        addTask={() => {
-                                        }}
-                                        addTaskItem={addTaskItem}
+                                        // addTask={addTaskTrening}
+                                        addTaskTrening={addTaskTrening}
                                         changeTaskStatus={changeStatus}
                                         changeTaskTitle={changeTaskTitle}
                                         changeTaskUnit={changeTaskUnit}

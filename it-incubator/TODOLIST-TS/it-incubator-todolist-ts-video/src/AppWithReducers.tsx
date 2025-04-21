@@ -147,13 +147,14 @@ function AppWithReducers() {
 
                             return <Grid item
                                          style={{marginBottom: '10px'}}
+                                         key={tl.id}
                             >
                                 <Paper
                                     elevation={3}
                                     style={{padding: '10px'}}
                                 >
                                     <Todolist
-                                        key={tl.id} // Додаємо унікальний ключ
+                                        // key={tl.id} // Додаємо унікальний ключ
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={tasksForTodolist}

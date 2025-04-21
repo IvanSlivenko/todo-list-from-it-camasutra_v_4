@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import './App.css';
-import {Todolist_test, TaskTypeTest} from "./Todolist_test";
+import {TodolistTrening, TaskTypeTrening} from "./TodolistTrening";
 import {AddItemForm} from "./AddItemForm";
-import {AddItemForm_test} from "./AddItemForm_test";
+import {AddItemFormTrening} from "./AddItemFormTrening";
 
 import {tasks_test1, tasks_test2} from "./tasks_test";
 import {v1} from "uuid";
@@ -27,7 +27,7 @@ export type TodolistTypeTrening = {
 }
 
 export type TasksStateTypeTrening = {
-    [key: string]: Array<TaskTypeTest>
+    [key: string]: Array<TaskTypeTrening>
 }
 
 function AppTrening() {
@@ -51,149 +51,281 @@ function AppTrening() {
 
     //--------------------------------------------------------- Data -----------
 
-    const removeTasks = (id: string, todolistId: string) => {
-        let tasks = tasksObj[todolistId];
-        let filteredTasks = tasks.filter(t => t.id !== id);
-        tasksObj[todolistId] = filteredTasks
-        setTasks({...tasksObj});
-    }
+    // const removeTasks = useCallback( (id: string, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let filteredTasks = tasks.filter(t => t.id !== id);
+    //     tasksObj[todolistId] = filteredTasks
+    //     setTasks({...tasksObj});
+    // },[]);
 
-    function addTaskItem(title: string, isDone: boolean, newTaskPeriod: string,
-                         newTaskUser: string, summ: number,
-                         quantity: number, prise: number, unit: string, todolistId: string) {
-        let task = {
+    const removeTasks = useCallback((id: string, todolistId: string) => {
+        setTasks(prevTasks => {
+            const filteredTasks = prevTasks[todolistId].filter(t => t.id !== id);
+            return {
+                ...prevTasks,
+                [todolistId]: filteredTasks
+            };
+        });
+    }, []);
+
+    // const addTaskItem = useCallback( (title: string, isDone: boolean, newTaskPeriod: string,
+    //                      newTaskUser: string, summ: number,
+    //                      quantity: number, prise: number, unit: string, todolistId: string)=> {
+    //     let task = {
+    //         id: v1(),
+    //         title: title,
+    //         isDone: false,
+    //         period: newTaskPeriod,
+    //         user: newTaskUser,
+    //         summ: summ,
+    //         quantity: quantity,
+    //         prise: prise,
+    //         unit: unit
+    //
+    //     }
+    //
+    //     let tasks = tasksObj[todolistId];
+    //
+    //     let newTasks = [task, ...tasks]
+    //     tasksObj[todolistId] = newTasks;
+    //     setTasks({...tasksObj})
+    //
+    // },[]);
+
+    const addTaskItem = useCallback((title: string, isDone: boolean, newTaskPeriod: string,
+                                     newTaskUser: string, summ: number,
+                                     quantity: number, prise: number, unit: string,
+                                     todolistId: string) => {
+        const newTask = {
             id: v1(),
-            title: title,
+            title,
             isDone: false,
             period: newTaskPeriod,
             user: newTaskUser,
-            summ: summ,
-            quantity: quantity,
-            prise: prise,
-            unit: unit
+            summ,
+            quantity,
+            prise,
+            unit
+        };
 
-        }
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: [newTask, ...prev[todolistId]]
+        }));
+    }, []);
 
-        let tasks = tasksObj[todolistId];
+    // const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === taskId)
+    //     if (task) {
+    //         task.isDone = isDone;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
 
-        let newTasks = [task, ...tasks]
-        tasksObj[todolistId] = newTasks;
-        setTasks({...tasksObj})
+    const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === taskId ? {...t, isDone} : t)
+        }));
+    }, []);
 
-    }
+    // const changeTaskTitle = useCallback((id: string, newTitle: string, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.title = newTitle;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
 
-    function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === taskId)
-        if (task) {
-            task.isDone = isDone;
-            setTasks({...tasksObj})
-        }
-    }
+    const changeTaskTitle = useCallback((id: string, newTitle: string, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id ? {...t, title: newTitle} : t)
+        }));
+    }, []);
 
-    function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.title = newTitle;
-            setTasks({...tasksObj})
-        }
-    }
+    // const changeTaskUnit = useCallback( (id: string, newUnit: string, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.unit = newUnit;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
 
-    function changeTaskUnit(id: string, newUnit: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.unit = newUnit;
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeTaskPeriod(id: string, newPeriod: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.period = newPeriod;
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeTaskQuantity(id: string, newQuantity: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.quantity = newQuantity;
-            task.summ = task.quantity * task.prise
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeTaskPrise(id: string, newPrise: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.prise = newPrise;
-            task.summ = task.quantity * task.prise
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeTaskSumm(id: string, newSumm: number, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.summ = newSumm;
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeTaskUser(id: string, newUser: string, todolistId: string) {
-        let tasks = tasksObj[todolistId];
-        let task = tasks.find(t => t.id === id)
-        if (task) {
-            task.user = newUser;
-            setTasks({...tasksObj})
-        }
-    }
-
-    function changeFilter(value: FilterValuesType, todolistId: string) {
-        // setFilter(value);
-        let todolist = todolists.find(t => t.id === todolistId)
-        if (todolist) {
-            todolist.filter = value
-            setTodolists([...todolists])
-        }
-
-    }
+    const changeTaskUnit = useCallback((id: string, newUnit: string, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id ? {...t, unit: newUnit} : t)
+        }));
+    }, []);
 
 
+    // const changeTaskPeriod = useCallback((id: string, newPeriod: string, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.period = newPeriod;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
 
-    let removeTodolist = (todolistId: string) => {
-        let filteredTodolist = todolists.filter(t => t.id !== todolistId)
-        setTodolists(filteredTodolist)
-        delete tasksObj[todolistId]
-        setTasks({...tasksObj});
-    }
-    let changeTodolistTitle = (id: string, newTitle: string) => {
-        const todolist = todolists.find(tl => tl.id === id)
-        if (todolist) {
-            todolist.title = newTitle
-            setTodolists([...todolists]);
-        }
-    }
+    const changeTaskPeriod = useCallback((id: string, newPeriod: string, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id ? {...t, period: newPeriod} : t)
+        }));
+    }, []);
 
-    function addTodolist(title: string) {
-        let todolist: TodolistTypeTrening = {
-            id: v1(),
-            filter: 'all',
-            title: title
-        }
-        setTodolists([todolist, ...todolists])
-        setTasks({
-            ...tasksObj,
-            [todolist.id]: []
-        })
-    }
+
+    // const changeTaskQuantity = useCallback((id: string, newQuantity: number, todolistId: string)=> {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.quantity = newQuantity;
+    //         task.summ = task.quantity * task.prise
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
+
+    const changeTaskQuantity = useCallback((id: string, newQuantity: number, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id
+                ? {...t, quantity: newQuantity, summ: newQuantity * t.prise}
+                : t)
+        }));
+    }, []);
+
+
+    // const changeTaskPrise = useCallback( (id: string, newPrise: number, todolistId: string)=> {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.prise = newPrise;
+    //         task.summ = task.quantity * task.prise
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
+
+    const changeTaskPrise = useCallback((id: string, newPrise: number, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id
+                ? {...t, prise: newPrise, summ: newPrise * t.quantity}
+                : t)
+        }));
+    }, []);
+
+    // const changeTaskSumm = useCallback( (id: string, newSumm: number, todolistId: string) => {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.summ = newSumm;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
+
+    const changeTaskSumm = useCallback((id: string, newSumm: number, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id ? {...t, summ: newSumm} : t)
+        }));
+    }, []);
+
+
+    // const changeTaskUser = useCallback((id: string, newUser: string, todolistId: string)=> {
+    //     let tasks = tasksObj[todolistId];
+    //     let task = tasks.find(t => t.id === id)
+    //     if (task) {
+    //         task.user = newUser;
+    //         setTasks({...tasksObj})
+    //     }
+    // },[]);
+
+    const changeTaskUser = useCallback((id: string, newUser: string, todolistId: string) => {
+        setTasks(prev => ({
+            ...prev,
+            [todolistId]: prev[todolistId].map(t => t.id === id ? {...t, user: newUser} : t)
+        }));
+    }, []);
+
+
+    // const changeFilter =  useCallback((value: FilterValuesType, todolistId: string)=> {
+    //     // setFilter(value);
+    //     let todolist = todolists.find(t => t.id === todolistId)
+    //     if (todolist) {
+    //         todolist.filter = value
+    //         setTodolists([...todolists])
+    //     }
+    // },[]);
+
+    const changeFilter = useCallback((value: FilterValuesType, todolistId: string) => {
+        setTodolists(prev =>
+            prev.map(t => t.id === todolistId ? {...t, filter: value} : t)
+        );
+    }, []);
+
+    // let removeTodolist = useCallback( (todolistId: string) => {
+    //     let filteredTodolist = todolists.filter(t => t.id !== todolistId)
+    //     setTodolists(filteredTodolist)
+    //     delete tasksObj[todolistId]
+    //     setTasks({...tasksObj});
+    // },[]);
+
+    const removeTodolist = useCallback((todolistId: string) => {
+        setTodolists(prev => prev.filter(t => t.id !== todolistId));
+        setTasks(prev => {
+            const {[todolistId]: _, ...rest} = prev;
+            return rest;
+        });
+    }, []);
+
+
+    // let changeTodolistTitle = useCallback((id: string, newTitle: string) => {
+    //     const todolist = todolists.find(tl => tl.id === id)
+    //     if (todolist) {
+    //         todolist.title = newTitle
+    //         setTodolists([...todolists]);
+    //     }
+    // },[]);
+
+    const changeTodolistTitle = useCallback((id: string, newTitle: string) => {
+        setTodolists(prev =>
+            prev.map(t => t.id === id ? {...t, title: newTitle} : t)
+        );
+    }, []);
+
+
+    // const addTodolist = (title: string) => {
+    //     let todolist: TodolistTypeTrening = {
+    //         id: v1(),
+    //         filter: 'all',
+    //         title: title
+    //     }
+    //     setTodolists([todolist, ...todolists])
+    //     setTasks({
+    //         ...tasksObj,
+    //         [todolist.id]: []
+    //     })
+    // }
+
+    const addTodolist = useCallback((title: string) => {
+        const newId = v1();
+        const newTodolist: TodolistTypeTrening = {
+            id: newId,
+            title,
+            filter: "all"
+        };
+        setTodolists(prev => [newTodolist, ...prev]);
+        setTasks(prev => ({
+            ...prev,
+            [newId]: []
+        }));
+    }, []);
+
 
     return (
         <div className="App_custome">
@@ -218,7 +350,7 @@ function AppTrening() {
             </AppBar>
 
             <Container maxWidth="xl">
-                <Grid container style={{padding:'10px'}}>
+                <Grid container style={{padding: '10px'}}>
                     <AddItemForm addItem={addTodolist}/>
                 </Grid>
                 <Grid container spacing={1}>
@@ -232,18 +364,20 @@ function AppTrening() {
                             if (tl.filter === "completed") {
                                 taskForTodolist = taskForTodolist.filter(t => t.isDone === true)
                             }
-                            return <Grid item>
+                            return <Grid item
+                                         key={tl.id}
+                            >
                                 <Paper elevation={3}>
-                                    <Todolist_test
-                                        key={tl.id}
+                                    <TodolistTrening
+                                        // key={tl.id}
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={taskForTodolist}
                                         removeTasks={removeTasks}
                                         changeFilter={changeFilter}
-                                        addTask={() => {
-                                        }}
-                                        addTaskItem={addTaskItem}
+                                        // addTask={() => {
+                                        // }}
+                                        addTaskTrening={addTaskItem}
                                         changeTaskStatus={changeStatus}
                                         changeTaskTitle={changeTaskTitle}
                                         changeTaskUnit={changeTaskUnit}

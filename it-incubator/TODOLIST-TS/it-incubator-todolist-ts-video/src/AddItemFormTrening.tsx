@@ -8,7 +8,7 @@ type AddItemFormPropsType = {
               newTaskPrise: number, newTaskUnit: string, todolistId: string) => void
 }
 
-export function AddItemForm_test(props: AddItemFormPropsType) {
+export const AddItemFormTrening=React.memo((props: AddItemFormPropsType)=> {
     let isDone = false;
     const getTodayDate = () => {
         return new Date().toISOString().split("T")[0];
@@ -158,7 +158,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                 newTaskSumm, newTaskQuantity, newTaskPrise, newTaskUnit, props.id);
 
             setTitle("");
-            setNewTaskPeriod("");
+            setNewTaskPeriod(getTodayDate);
             setNewTaskUser("");
             setNewTaskUnit("")
             setNewTaskQuantity(0);
@@ -222,19 +222,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
         </div>
         <div className={isHidden ? "data-group-hidden" : "data-group-view"}>
             <div className='input-Mit-Label-Midle'>
-                {/*<input*/}
-                {/*    className={errorPeriod ? "error-custome" : "title-group-input-date"}*/}
-                {/*    id="taskPeriod"*/}
-                {/*    type="date"*/}
-                {/*    value={newTaskPeriod}*/}
-                {/*    onChange={onNewPeriodChangeHandler}*/}
-                {/*    // onKeyDown={onKeyDownHandler}*/}
-                {/*    onKeyDown={onKeyDownPeriodHandler}*/}
-                {/*/>*/}
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="taskPeriod">Період*/}
-                {/*</label>*/}
+
 
                 <TextField
                     type={"date"}
@@ -251,16 +239,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
 
             </div>
             <div className='input-Mit-Label-Midle'>
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="User">Покупець</label>*/}
-                {/*<input*/}
-                {/*    className={errorUser ? "error-custome" : "title-group-input"}*/}
-                {/*    id="User"*/}
-                {/*    value={newTaskUser}*/}
-                {/*    onChange={onNewUserChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownUserHandler}*/}
-                {/*/>*/}
+
                 <TextField
                     style={{paddingRight: '5px'}}
                     size="small"
@@ -283,45 +262,8 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                     onKeyDown={onKeyDownTitleHandler}
                 />
             </div>
-            {/*<div className='input-Mit-Label-Midle'>*/}
 
-                {/*<input*/}
-                {/*    className={errorTitle ? "error-custome" : "title-group-input"}*/}
-                {/*    id="taskTitle"*/}
-                {/*    value={title}*/}
-                {/*    onChange={onNewTitleChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownTitleHandler}*/}
-                {/*/>*/}
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="taskTitle">Товар*/}
-                {/*</label>*/}
-
-                {/*<TextField*/}
-                {/*    size="small"*/}
-                {/*    variant="outlined"*/}
-                {/*    // title={title}*/}
-                {/*    label={'Товар'}*/}
-                {/*    className={error ? "error" : ""}*/}
-                {/*    value={title}*/}
-                {/*    onChange={onNewTitleChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownTitleHandler}*/}
-                {/*/>*/}
-            {/*</div>*/}
             <div className='input-Mit-Label-Midle'>
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="unit">Одиниця*/}
-                {/*</label>*/}
-                {/*<input*/}
-                {/*    // className="title-group-input-short"*/}
-                {/*    className={errorUnit ? "error-custome" : "title-group-input-short"}*/}
-                {/*    id="unit"*/}
-                {/*    value={newTaskUnit}*/}
-                {/*    onChange={onNewUnitChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownUnitHandler}*/}
-                {/*/>*/}
-
                 <TextField
                     style={{paddingRight: '5px'}}
                     size="small"
@@ -334,19 +276,6 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                     onKeyDown={onKeyDownUnitHandler}
                 />
 
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="quantity">Кількість*/}
-                {/*</label>*/}
-                {/*<input*/}
-                {/*    className={errorQuantity ? "error-custome" : "title-group-input-short"}*/}
-                {/*    id="quantity"*/}
-                {/*    type="number"*/}
-                {/*    step="0.01"*/}
-                {/*    value={newTaskQuantity}*/}
-                {/*    onChange={onNewQuantityChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownGuantityHandler}*/}
-                {/*/>*/}
                 <TextField
                     type={"number"}
                     size="small"
@@ -359,19 +288,7 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
                     onKeyDown={onKeyDownGuantityHandler}
                 />
 
-                {/*<label*/}
-                {/*    className="title-group-lable-right"*/}
-                {/*    htmlFor="prise">Ціна*/}
-                {/*</label>*/}
-                {/*<input*/}
-                {/*    className={errorPrise ? "error-custome" : "title-group-input-short"}*/}
-                {/*    id="prise"*/}
-                {/*    type="number"*/}
-                {/*    // step="0.01"*/}
-                {/*    value={newTaskPrise}*/}
-                {/*    onChange={onNewPriseChangeHandler}*/}
-                {/*    onKeyDown={onKeyDownPriseHandler}*/}
-                {/*/>*/}
+
 
 
             </div>
@@ -422,4 +339,4 @@ export function AddItemForm_test(props: AddItemFormPropsType) {
         }
     </div>
     // </div>
-}
+})

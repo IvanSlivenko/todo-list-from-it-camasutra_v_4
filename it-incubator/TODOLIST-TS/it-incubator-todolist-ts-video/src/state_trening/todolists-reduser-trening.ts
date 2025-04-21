@@ -36,8 +36,8 @@ export let todolistId1Trening = v1();
 export let todolistId2Trening = v1();
 
 const initialStateTrening: Array<TodolistTypeTrening> = [
-    {id: todolistId1Trening, title: "What to learn", filter: "active"},
-    {id: todolistId2Trening, title: "What to bay", filter: "completed"}
+    // {id: todolistId1Trening, title: "What to learn", filter: "active"},
+    // {id: todolistId2Trening, title: "What to bay", filter: "completed"}
 ]
 
 export const todolistsReducerTrening = (state: Array<TodolistTypeTrening> = initialStateTrening, action: ActionsType): Array<TodolistTypeTrening> => {

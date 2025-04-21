@@ -100,8 +100,8 @@ export type ActionsTypeTrening = RemoveTaskActionType
     | ChangeTaskUserActionType
 
 const initialStateTrening: TasksStateTypeTrening = {
-    [todolistId1Trening]: tasks_test1,
-    [todolistId2Trening]: tasks_test2
+    // [todolistId1Trening]: tasks_test1,
+    // [todolistId2Trening]: tasks_test2
 }
 
 export const tasksReducerTrening = (state: TasksStateTypeTrening = initialStateTrening, action: ActionsTypeTrening): TasksStateTypeTrening => {
@@ -136,48 +136,72 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening = initialStateT
         }
         case 'CHANGE-TASK-STATUS': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.isDone = action.isDone;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, isDone: action.isDone} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     let newTask = {...task, isDone: action.isDone}
+            //     // task.isDone = action.isDone;
+            //
+            // }
+            // stateCopy[action.todolistId] = [...todolistTasks]
             return stateCopy
         }
         case 'CHANGE-TASK-TITLE': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.title = action.title;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, title: action.title} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     task.title = action.title;
+            //
+            // }
+            // stateCopy[action.todolistId] = [...todolistTasks]
             return stateCopy
         }
         case 'CHANGE-TASK-UNIT': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.unit = action.unit;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, unit: action.unit} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     task.unit = action.unit;
+            //
+            // }
             return stateCopy
         }
         case 'CHANGE-TASK-PERIOD': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.period = action.period;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, period: action.period} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     task.period = action.period;
+            //
+            // }
             return stateCopy
         }
         case 'CHANGE-TASK-QUANTITY': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
+            const todolistTasks = stateCopy[action.todolistId]
+
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, quantity: action.quantity} : t);
+
+            let task = stateCopy[action.todolistId].find(t => t.id === action.taskId)
+            // let task = todolistTasks.find(t => t.id === action.taskId)
             if (task) {
                 task.quantity = action.quantity;
                 task.summ=task.quantity*task.prise
@@ -187,8 +211,13 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening = initialStateT
         }
         case 'CHANGE-TASK-PRICE': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
+            const todolistTasks = stateCopy[action.todolistId]
+
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, prise: action.price} : t);
+
+            let task = stateCopy[action.todolistId].find(t => t.id === action.taskId)
+            // let task = todolistTasks.find(t => t.id === action.taskId)
             if (task) {
                 task.prise = action.price;
                 task.summ=task.quantity*task.prise
@@ -198,22 +227,30 @@ export const tasksReducerTrening = (state: TasksStateTypeTrening = initialStateT
         }
         case 'CHANGE-TASK-SUMM': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.summ = action.summ;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, summ: action.summ} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     task.summ = action.summ;
+            //
+            // }
             return stateCopy
         }
         case 'CHANGE-TASK-USER': {
             const stateCopy = {...state};
-            const tasks = stateCopy[action.todolistId]
-            let task = tasks.find(t => t.id === action.taskId)
-            if (task) {
-                task.user = action.user;
+            const todolistTasks = stateCopy[action.todolistId]
 
-            }
+            stateCopy[action.todolistId] = todolistTasks.map(t => t.id === action.taskId
+                ? {...t, user: action.user} : t);
+
+            // let task = todolistTasks.find(t => t.id === action.taskId)
+            // if (task) {
+            //     task.user = action.user;
+            //
+            // }
             return stateCopy
         }
 

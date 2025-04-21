@@ -1,9 +1,9 @@
 import React, {useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
-import {Todolist_test, TaskTypeTest} from "./Todolist_test";
+import {TodolistTrening, TaskTypeTrening} from "./TodolistTrening";
 import {AddItemForm} from "./AddItemForm";
-import {AddItemForm_test} from "./AddItemForm_test";
+import {AddItemFormTrening} from "./AddItemFormTrening";
 
 import {tasks_test1, tasks_test2} from "./tasks_test";
 import {v1} from "uuid";
@@ -42,7 +42,7 @@ export type TodolistType = {
 }
 
 export type TasksStateType = {
-    [key: string]: Array<TaskTypeTest>
+    [key: string]: Array<TaskTypeTrening>
 }
 
 function AppWithReducersTrening() {
@@ -195,16 +195,16 @@ function AppWithReducersTrening() {
                             }
                             return <Grid item>
                                 <Paper elevation={3}>
-                                    <Todolist_test
+                                    <TodolistTrening
                                         key={tl.id}
                                         id={tl.id}
                                         title={tl.title}
                                         tasks={taskForTodolist}
                                         removeTasks={removeTasks}
                                         changeFilter={changeFilter}
-                                        addTask={() => {
-                                        }}
-                                        addTaskItem={addTaskItem}
+                                        // addTask={() => {
+                                        // }}
+                                        addTaskTrening={addTaskItem}
                                         changeTaskStatus={changeStatus}
                                         changeTaskTitle={changeTaskTitle}
                                         changeTaskUnit={changeTaskUnit}
